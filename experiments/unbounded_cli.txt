@@ -1,6 +1,6 @@
 ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
 ggml_metal_library_init: using embedded metal library
-ggml_metal_library_init: loaded in 0.022 sec
+ggml_metal_library_init: loaded in 0.021 sec
 ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
 ggml_metal_device_init: GPU name:   MTL0
 ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
@@ -26,7 +26,7 @@ Loading model...
                                     ██    ██
                                     ▀▀    ▀▀
 
-build      : b8114-10b26ee23
+build      : b8116-7a5eb5b69
 model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
 modalities : text
 
@@ -42,36 +42,30 @@ available commands:
  
  Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of the television series The Long Firm ;  ... (truncated)
 
-Robert Boulter is an English film, television, and theatre actor. He has had a variety of roles in different productions, including:
-
-* The Bill (2000) - guest starring role as Scott Parry
-* Herons (2001) - starring role as Scott, written by Simon Stephens, performed at the Royal Court Theatre
-* Judge John Deed (2002) - guest role as Addem Armitage
-* The Long Firm (2004) - role as Craig in the episode "Teddy's Story"
-* Mercury Fur (2005) - starring role as Darren, directed by John Tiffany and performedllama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+Robert Boulter is an English film, television, and theatre actor. He has had a variety of roles in different productions, including guest starring roles on television series such as "The Bill" and "Judge John Deed," as well as starring roles in plays such as "Hurons" and "Mercury Fur." He has also appeared in films such as "Daylight Robbery" and "Donkey Punch." In addition, he has had recurring roles in television series such as "Casualty" and "Survivors." Boulter has received critical reviews for his performances, with some critics praising his ability to bring allama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
 llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 10922 = 5466 + (5455 =  4685 +     512 +     258) +           0 |
 llama_memory_breakdown_print: |   - Host                |                  305 =   281 +       0 +      24                |
 ggml_metal_free: deallocating
 
 
-[ Prompt: 222.4 t/s | Generation: 23.8 t/s ]
+[ Prompt: 209.8 t/s | Generation: 22.1 t/s ]
 
 Exiting...
-       16.23 real         0.71 user         1.12 sys
-          5485707264  maximum resident set size
+       26.38 real         0.53 user         0.87 sys
+          5560172544  maximum resident set size
                    0  average shared memory size
                    0  average unshared data size
                    0  average unshared stack size
-               52763  page reclaims
-              296563  page faults
+              296879  page reclaims
+               50475  page faults
                    0  swaps
                    0  block input operations
                    0  block output operations
                    0  messages sent
                    0  messages received
                    0  signals received
-                 858  voluntary context switches
-               22806  involuntary context switches
-         11190376625  instructions retired
-          5219437497  cycles elapsed
-           640200960  peak memory footprint
+                 190  voluntary context switches
+                6421  involuntary context switches
+          8798107979  instructions retired
+          4350955897  cycles elapsed
+           649704256  peak memory footprint

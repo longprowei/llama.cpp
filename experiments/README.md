@@ -2,29 +2,28 @@
 ## Prepare test file
 for unbounded test
 `sed -n '1,20p' wikitext-2-raw/wiki.test.raw > /tmp/prompt_short.txt`
+`sed -n '1,75p' wikitext-2-raw/wiki.test.raw > /tmp/prompt_long.txt`
 
 
 ## Commands for baseline test and some results
 ### Unbounded Baseline With llama-cli
     /usr/bin/time -l ./build/bin/llama-cli \
         -m /Users/chenglongwei/Documents/UNSW_study/comp9991/models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f /tmp/prompt_short.txt \
-        --no-conversation \
+        -f /tmp/prompt_long.txt \
         --single-turn \
         --simple-io \
         --show-timings \
         --perf \
         --temp 0 \
-        --top-k 1 \
         --ignore-eos \
         -c 4096 \
         -n 128 \
         2>&1 | tee /tmp/unbounded_cli.txt
 
 Result:
-- Prompt throughput: `222.4 t/s`
-- Generation throughput: `23.8 t/s`
-- Estimated per-token decode latency: `~42.0 ms/token`
+- Prompt throughput: `209.8 t/s`
+- Generation throughput: `22.1 t/s`
+- Estimated per-token decode latency: `~45.2 ms/token`
 - MTL0 memory breakdown:
   - model: `4685 MiB`
   - context: `512 MiB`
@@ -33,8 +32,8 @@ Result:
   - model: `281 MiB`
   - context: `0 MiB`
   - compute: `24 MiB`
-- Peak RSS: `5485707264 bytes` (`~5.49 GB`)
-- Peak memory footprint: `640200960 bytes` (`~610.5 MiB`)
+- Peak RSS: `5560172544 bytes` (`~5.56 GB`)
+- Peak memory footprint: `649704256 bytes` (`~619.6 MiB`)
 
 ### Throughput Benchmark with llama-bench
     ./build/bin/llama-bench \
