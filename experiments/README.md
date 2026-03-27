@@ -8,7 +8,7 @@ for unbounded test
 ### Unbounded Baseline With llama-cli
     /usr/bin/time -l ./build/bin/llama-cli \
         -m /Users/chenglongwei/Documents/UNSW_study/comp9991/models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f /tmp/prompt_long.txt \
+        -f /tmp/prompt_short.txt \
         --no-conversation \
         --single-turn \
         --simple-io \
