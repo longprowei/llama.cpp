@@ -1963,8 +1963,16 @@ private:
         // apply context-shift if needed
         // TODO: simplify and improve
         for (server_slot & slot : slots) {
-            if (slot.state == SLOT_STATE_GENERATING && slot.prompt.n_tokens() + 1 >= slot.n_ctx) {
-                if (!params_base.ctx_shift) {
+            if (slot.state != SLOT_STATE_GENERATING) {
+                continue;
+            }
+
+            const int sw_keep = add_bos_token ? 1 : 0;
+            const bool need_ctx_shift = slot.prompt.n_tokens() + 1 >= slot.n_ctx;
+            const bool need_sw_shift = params_base.sliding_window > 0 && slot.prompt.n_tokens() + 1 > sw_keep + params_base.sliding_window;
+
+            if (need_ctx_shift || need_sw_shift) {
+                if (!params_base.ctx_shift && !need_sw_shift) {
                     // this check is redundant (for good)
                     // we should never get here, because generation should already stopped in process_token()
                     send_error(slot, "context shift is disabled", ERROR_TYPE_SERVER);
@@ -1984,19 +1992,30 @@ private:
                     continue;
                 }
 
-                // Shift context
-                int n_keep = slot.task->params.n_keep < 0 ? slot.task->n_tokens() : slot.task->params.n_keep;
+                int n_keep = 0;
+                int n_discard = 0;
+                if (need_sw_shift) {
+                    n_keep = sw_keep;
+                    n_discard = slot.prompt.n_tokens() + 1 - (n_keep + params_base.sliding_window);
 
-                if (add_bos_token) {
-                    n_keep += 1;
+                    GGML_ASSERT(n_discard >= 0);
+                    GGML_ASSERT(n_discard <= slot.prompt.n_tokens() - n_keep);
+                    SLT_WRN(slot, "slot sliding window, n_keep = %d, n_discard = %d\n", n_keep, n_discard);
+                } else {
+                    // Shift context
+                    n_keep = slot.task->params.n_keep < 0 ? slot.task->n_tokens() : slot.task->params.n_keep;
+
+                    if (add_bos_token) {
+                        n_keep += 1;
+                    }
+
+                    n_keep = std::min(slot.n_ctx - 4, n_keep);
+
+                    const int n_left    = slot.prompt.n_tokens() - n_keep;
+                    n_discard = slot.task->params.n_discard ? slot.task->params.n_discard : (n_left / 2);
+
+                    SLT_WRN(slot, "slot context shift, n_keep = %d, n_left = %d, n_discard = %d\n", n_keep, n_left, n_discard);
                 }
-
-                n_keep = std::min(slot.n_ctx - 4, n_keep);
-
-                const int n_left    = slot.prompt.n_tokens() - n_keep;
-                const int n_discard = slot.task->params.n_discard ? slot.task->params.n_discard : (n_left / 2);
-
-                SLT_WRN(slot, "slot context shift, n_keep = %d, n_left = %d, n_discard = %d\n", n_keep, n_left, n_discard);
 
                 llama_memory_seq_rm (llama_get_memory(ctx), slot.id, n_keep            , n_keep + n_discard);
                 llama_memory_seq_add(llama_get_memory(ctx), slot.id, n_keep + n_discard, slot.prompt.n_tokens(), -n_discard);
@@ -2015,6 +2034,11 @@ private:
 
                     slot.prompt.tokens.clear();
                     slot.prompt.tokens.insert(new_tokens);
+                }
+
+                {
+                    const llama_pos pos_max = llama_memory_seq_pos_max(llama_get_memory(ctx), slot.id);
+                    GGML_ASSERT(pos_max == (llama_pos) slot.prompt.tokens.size() - 1);
                 }
 
                 slot.truncated = true;

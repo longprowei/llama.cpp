@@ -8,7 +8,7 @@ for unbounded test
 ## Commands for baseline test and some results
 ### Unbounded Baseline With llama-cli
     /usr/bin/time -l ./build/bin/llama-cli \
-        -m /Users/chenglongwei/Documents/UNSW_study/comp9991/models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
         -f /tmp/prompt_long.txt \
         --single-turn \
         --simple-io \
@@ -16,28 +16,29 @@ for unbounded test
         --perf \
         --temp 0 \
         --ignore-eos \
-        -c 4096 \
-        -n 128 \
+        -c 8192 \
+        -n 512 \
         2>&1 | tee /tmp/unbounded_cli.txt
 
 Result:
-- Prompt throughput: `209.8 t/s`
-- Generation throughput: `22.1 t/s`
-- Estimated per-token decode latency: `~45.2 ms/token`
+- Prompt throughput: `211.6 t/s`
+- Generation throughput: `22.2 t/s`
+- Estimated per-token decode latency: `~45.0 ms/token`
 - MTL0 memory breakdown:
   - model: `4685 MiB`
-  - context: `512 MiB`
+  - context: `1024 MiB`
   - compute: `258 MiB`
 - Host memory breakdown:
   - model: `281 MiB`
   - context: `0 MiB`
-  - compute: `24 MiB`
-- Peak RSS: `5560172544 bytes` (`~5.56 GB`)
-- Peak memory footprint: `649704256 bytes` (`~619.6 MiB`)
+  - compute: `32 MiB`
+- Peak RSS: `5463097344 bytes` (`~5.46 GB`)
+- Peak memory footprint: `1188099968 bytes` (`~1133.1 MiB`)
+
 
 ### Throughput Benchmark with llama-bench
     ./build/bin/llama-bench \
-        -m /Users/chenglongwei/Documents/UNSW_study/comp9991/models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
         -p 512 \
         -n 128 \
         -r 3 \
@@ -52,7 +53,7 @@ Result:
 
 ### Quality Baseline With llama-perplexity
     /usr/bin/time -l ./build/bin/llama-perplexity \
-        -m /Users/chenglongwei/Documents/UNSW_study/comp9991/models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
         -f wikitext-2-raw/wiki.test.raw \
         -c 2048 \
         --ppl-stride 512 \
@@ -78,3 +79,33 @@ Result:
   - compute: `20 MiB`
 - Peak RSS: `8428748800 bytes` (`~8.43 GB`)
 - Peak memory footprint: `3713452608 bytes` (`~3.46 GiB`)
+
+# Sliding Window Baseline With llama-cli
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f /tmp/prompt_long.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --ignore-eos \
+        --sliding-window 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee /tmp/sliding_win_cli.txt
+
+Result:
+- Prompt throughput: `211.7 t/s`
+- Generation throughput: `20.4 t/s`
+- Estimated per-token decode latency: `~49.0 ms/token`
+- MTL0 memory breakdown:
+  - model: `4685 MiB`
+  - context: `544 MiB`
+  - compute: `258 MiB`
+- Host memory breakdown:
+  - model: `281 MiB`
+  - context: `0 MiB`
+  - compute: `24 MiB`
+- Peak RSS: `5386780672 bytes` (`~5.39 GB`)
+- Peak memory footprint: `682586880 bytes` (`~651.0 MiB`)

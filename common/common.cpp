@@ -1067,6 +1067,22 @@ common_init_result::common_init_result(common_params & params) :
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
+    if (params.sliding_window > 0) {
+        const int32_t n_keep_sw = llama_vocab_get_add_bos(vocab) ? 1 : 0;
+        const int32_t n_ctx_sw = params.sliding_window + n_keep_sw + 4;
+
+        if (params.n_ctx > 0 && params.n_ctx < n_ctx_sw) {
+            LOG_ERR("%s: --ctx-size %d is too small for --sliding-window %d\n",
+                    __func__, params.n_ctx, params.sliding_window);
+            return;
+        }
+
+        LOG_WRN("%s: overriding physical ctx-size from %u to %d for sliding-window mode\n",
+                __func__, cparams.n_ctx, n_ctx_sw);
+
+        cparams.n_ctx = n_ctx_sw;
+    }
+
     // load and optionally apply lora adapters (must be loaded before context creation)
     for (auto & la : params.lora_adapters) {
         llama_adapter_lora_ptr lora;
@@ -1182,9 +1198,11 @@ common_init_result_ptr common_init_from_params(common_params & params) {
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
-    if (params.ctx_shift && !llama_memory_can_shift(llama_get_memory(lctx))) {
-        LOG_WRN("%s: KV cache shifting is not supported for this context, disabling KV cache shifting\n", __func__);
+    const bool needs_shift = params.ctx_shift || params.sliding_window > 0;
+    if (needs_shift && !llama_memory_can_shift(llama_get_memory(lctx))) {
+        LOG_WRN("%s: KV cache shifting is not supported for this context, disabling KV cache shifting and sliding window policy\n", __func__);
         params.ctx_shift = false;
+        params.sliding_window = 0;
     }
 
     if (!params.control_vectors.empty()) {

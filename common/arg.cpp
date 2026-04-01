@@ -1271,6 +1271,17 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ));
     add_opt(common_arg(
+        {"--sliding-window"}, "N",
+        string_format("keep most recent N tokens in sliding window policy, 0 is disabled of sliding window policy (default: %d)", params.sliding_window),
+        [](common_params & params, int value) {
+            if (value < 0) {
+                throw std::invalid_argument("invalid value");
+            }
+            params.sliding_window = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY})
+     .set_env("LLAMA_ARG_SLIDING_WINDOW"));
+    add_opt(common_arg(
         {"--swa-full"},
         string_format("use full-size SWA cache (default: %s)\n"
             "[(more info)](https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)", params.swa_full ? "true" : "false"),
