@@ -96,9 +96,9 @@ Result:
         2>&1 | tee /tmp/sliding_win_cli.txt
 
 Result:
-- Prompt throughput: `211.7 t/s`
-- Generation throughput: `20.4 t/s`
-- Estimated per-token decode latency: `~49.0 ms/token`
+- Prompt throughput: `211.2 t/s`
+- Generation throughput: `19.2 t/s`
+- Estimated per-token decode latency: `~52.1 ms/token`
 - MTL0 memory breakdown:
   - model: `4685 MiB`
   - context: `544 MiB`
@@ -107,5 +107,35 @@ Result:
   - model: `281 MiB`
   - context: `0 MiB`
   - compute: `24 MiB`
-- Peak RSS: `5386780672 bytes` (`~5.39 GB`)
-- Peak memory footprint: `682586880 bytes` (`~651.0 MiB`)
+- Peak RSS: `5461868544 bytes` (`~5.46 GB`)
+- Peak memory footprint: `684307456 bytes` (`~652.6 MiB`)
+
+# age and importance based policy llama-cli
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f /tmp/prompt_long.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --ignore-eos \
+        --age_eviction 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee /tmp/age_based_cli.txt
+
+Result:
+- Prompt throughput: `211.7 t/s`
+- Generation throughput: `22.0 t/s`
+- Estimated per-token decode latency: `~45.5 ms/token`
+- MTL0 memory breakdown:
+  - model: `4685 MiB`
+  - context: `544 MiB`
+  - compute: `258 MiB`
+- Host memory breakdown:
+  - model: `281 MiB`
+  - context: `0 MiB`
+  - compute: `24 MiB`
+- Peak RSS: `5005361152 bytes` (`~5.01 GB`)
+- Peak memory footprint: `683930432 bytes` (`~652.2 MiB`)

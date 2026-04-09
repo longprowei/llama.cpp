@@ -1281,6 +1281,38 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY})
      .set_env("LLAMA_ARG_SLIDING_WINDOW"));
+     add_opt(common_arg(
+        {"--age-eviction"}, "N",
+        string_format("use age and importance based eviction policy with bounded N tokens, 0 is disabled of age-eviction policy (default: %d)", params.age_eviction),
+        [](common_params & params, int value) {
+            if (value < 0) {
+                throw std::invalid_argument("invalid value");
+            }
+            params.age_eviction = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY})
+     .set_env("LLAMA_ARG_AGE_EVICTION"));
+     add_opt(common_arg(
+        {"--age-keep-start"}, "N",
+        string_format("keep first N prompt tokens in age based eviction (default: %d)", params.age_keep_start),
+        [](common_params & params, int value) {
+            if (value < 0) {
+                throw std::invalid_argument("invalid value");
+            }
+            params.age_keep_start = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY}));
+    add_opt(common_arg(
+        {"--age-block-size"}, "N",
+        string_format("evict middle blocks of N tokens in age based eviction policy (default: %d)", params.age_block_size),
+        [](common_params & params, int value) {
+            if (value <= 0) {
+                // block size should never be 0
+                throw std::invalid_argument("invalid value");
+            }
+            params.age_block_size = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY}));
     add_opt(common_arg(
         {"--swa-full"},
         string_format("use full-size SWA cache (default: %s)\n"

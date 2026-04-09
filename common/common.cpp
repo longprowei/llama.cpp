@@ -1067,20 +1067,27 @@ common_init_result::common_init_result(common_params & params) :
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
-    if (params.sliding_window > 0) {
-        const int32_t n_keep_sw = llama_vocab_get_add_bos(vocab) ? 1 : 0;
-        const int32_t n_ctx_sw = params.sliding_window + n_keep_sw + 4;
+    if (params.sliding_window > 0 && params.age_eviction > 0) {
+        LOG_ERR("%s: --sliding-window and --age-eviction cannot be used together\n", __func__);
+        return;
+    }
 
-        if (params.n_ctx > 0 && params.n_ctx < n_ctx_sw) {
-            LOG_ERR("%s: --ctx-size %d is too small for --sliding-window %d\n",
-                    __func__, params.n_ctx, params.sliding_window);
+    const int32_t policy_budget = params.age_eviction > 0 ? params.age_eviction : params.sliding_window;
+
+    if (policy_budget > 0) {
+        const int32_t n_keep_sw = llama_vocab_get_add_bos(vocab) ? 1 : 0;
+        const int32_t n_ctx_policy = policy_budget + n_keep_sw + 4;
+
+        if (params.n_ctx > 0 && params.n_ctx < n_ctx_policy) {
+            LOG_ERR("%s: --ctx-size %d is too small for bounded token budget %d\n",
+                    __func__, params.n_ctx, policy_budget);
             return;
         }
 
-        LOG_WRN("%s: overriding physical ctx-size from %u to %d for sliding-window mode\n",
-                __func__, cparams.n_ctx, n_ctx_sw);
+        LOG_WRN("%s: overriding physical ctx-size from %u to %d for bounded token policy\n",
+                __func__, cparams.n_ctx, n_ctx_policy);
 
-        cparams.n_ctx = n_ctx_sw;
+        cparams.n_ctx = n_ctx_policy;
     }
 
     // load and optionally apply lora adapters (must be loaded before context creation)
@@ -1198,11 +1205,13 @@ common_init_result_ptr common_init_from_params(common_params & params) {
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
-    const bool needs_shift = params.ctx_shift || params.sliding_window > 0;
+    const int32_t policy_budget = params.age_eviction > 0 ? params.age_eviction : params.sliding_window;
+    const bool needs_shift = params.ctx_shift || policy_budget > 0;
     if (needs_shift && !llama_memory_can_shift(llama_get_memory(lctx))) {
-        LOG_WRN("%s: KV cache shifting is not supported for this context, disabling KV cache shifting and sliding window policy\n", __func__);
+        LOG_WRN("%s: KV cache shifting is not supported for this context, disabling KV cache shifting or bounded KV policies\n", __func__);
         params.ctx_shift = false;
         params.sliding_window = 0;
+        params.age_eviction = 0;
     }
 
     if (!params.control_vectors.empty()) {

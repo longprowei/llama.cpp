@@ -1968,14 +1968,17 @@ private:
             }
 
             const int sw_keep = add_bos_token ? 1 : 0;
-            const bool need_ctx_shift = slot.prompt.n_tokens() + 1 >= slot.n_ctx;
-            const bool need_sw_shift = params_base.sliding_window > 0 && slot.prompt.n_tokens() + 1 > sw_keep + params_base.sliding_window;
+            const int policy_budget = params_base.age_eviction > 0 ? params_base.age_eviction : params_base.sliding_window;
+            const bool use_age_eviction = params_base.age_eviction > 0;
 
-            if (need_ctx_shift || need_sw_shift) {
-                if (!params_base.ctx_shift && !need_sw_shift) {
+            const bool need_ctx_shift = slot.prompt.n_tokens() + 1 >= slot.n_ctx;
+            const bool need_policy_shift = policy_budget > 0 && slot.prompt.n_tokens() + 1 > sw_keep + policy_budget;
+
+            if (need_ctx_shift || need_policy_shift) {
+                if (!params_base.ctx_shift && !need_policy_shift) {
                     // this check is redundant (for good)
                     // we should never get here, because generation should already stopped in process_token()
-                    send_error(slot, "context shift is disabled", ERROR_TYPE_SERVER);
+                    send_error(slot, "context or policy shift is disabled", ERROR_TYPE_SERVER);
                     slot.release();
                     continue;
                 }
@@ -1987,20 +1990,73 @@ private:
                 }
 
                 if (slot.task->is_parent() || slot.task->is_child()) {
-                    send_error(slot, "context shift cannot be used for shared prompt", ERROR_TYPE_SERVER);
+                    send_error(slot, "context or policy shift cannot be used for shared prompt", ERROR_TYPE_SERVER);
                     slot.release();
                     continue;
                 }
 
                 int n_keep = 0;
                 int n_discard = 0;
-                if (need_sw_shift) {
-                    n_keep = sw_keep;
-                    n_discard = slot.prompt.n_tokens() + 1 - (n_keep + params_base.sliding_window);
+                if (need_policy_shift) {
+                    if (!use_age_eviction) {
+                        // slide window policy
+                        n_keep = sw_keep;
+                        n_discard = slot.prompt.n_tokens() + 1 - (n_keep + params_base.sliding_window);
 
-                    GGML_ASSERT(n_discard >= 0);
-                    GGML_ASSERT(n_discard <= slot.prompt.n_tokens() - n_keep);
-                    SLT_WRN(slot, "slot sliding window, n_keep = %d, n_discard = %d\n", n_keep, n_discard);
+                        GGML_ASSERT(n_discard >= 0);
+                        GGML_ASSERT(n_discard <= slot.prompt.n_tokens() - n_keep);
+                        SLT_WRN(slot, "slot sliding window, n_keep = %d, n_discard = %d\n", n_keep, n_discard);
+                    } else {
+                        // age and importance based policy: keep BOS + a small prompt prefix, recent tail and evict the oldest middle block
+                        const int keep_start = std::min(params_base.age_keep_start, slot.task->n_tokens());
+                        const int prefix_keep = std::min(slot.prompt.n_tokens(), sw_keep + keep_start);
+                        const int block_size = params_base.age_block_size;
+                        const int need_free = slot.prompt.n_tokens() + 1 - (sw_keep + policy_budget);
+
+                        // default keep the recent token, either 2 block size or 1/3 budget window size
+                        const int recent_keep_default = std::max(block_size * 2, policy_budget / 3);
+                        const int recent_keep_cap = std::max(0, slot.prompt.n_tokens() - prefix_keep - 1);
+                        const int recent_keep = std::min(recent_keep_default, recent_keep_cap);
+
+                        const int middle_begin = prefix_keep;
+                        const int middle_end = slot.prompt.n_tokens() - recent_keep;
+
+                        if (middle_end <= middle_begin) {
+                            n_keep = sw_keep;
+                            n_discard = slot.prompt.n_tokens() + 1 - (n_keep + policy_budget);
+
+                            GGML_ASSERT(n_discard >= 0);
+                            GGML_ASSERT(n_discard <= slot.prompt.n_tokens() - n_keep);
+
+                            SLT_WRN(slot, "slot age eviction fallback to sliding window, n_keep = %d, n_discard = %d\n", n_keep, n_discard);
+                        } else {
+                            const int pos_end = std::min(middle_begin + block_size, middle_end);
+
+                            int victim_begin = middle_begin;
+                            int victim_end = pos_end;
+
+                            // need to kick out at least the current overflow tokens
+                            victim_end = std::min(std::max(victim_end, victim_begin + need_free), middle_end);
+
+                            const int victim_size = victim_end - victim_begin;
+                            if (victim_size <= 0) {
+                                // become sliding window
+                                n_keep = sw_keep;
+                                n_discard = slot.prompt.n_tokens() + 1 - (n_keep + policy_budget);
+
+                                GGML_ASSERT(n_discard >= 0);
+                                GGML_ASSERT(n_discard <= slot.prompt.n_tokens() - n_keep);
+
+                                SLT_WRN(slot, "slot age eviction fallback to sliding window, n_keep = %d, n_discard = %d\n", n_keep, n_discard);
+                            } else {
+                                n_keep = victim_begin;
+                                n_discard = victim_size;
+
+                                SLT_WRN(slot, "slot age eviction, prefix_keep = %d, recent_keep = %d, middle = [%d,%d), victim = [%d,%d), n_discard = %d\n",
+                                    prefix_keep, recent_keep, middle_begin, middle_end, victim_begin, victim_end, victim_size);
+                            }
+                        }
+                    }
                 } else {
                     // Shift context
                     n_keep = slot.task->params.n_keep < 0 ? slot.task->n_tokens() : slot.task->params.n_keep;
