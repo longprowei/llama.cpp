@@ -141,3 +141,6 @@ a.out.*
 
 # test raw files
 wikitext-2-raw/
+
+# experiments results
+experiments/divergence_results/
