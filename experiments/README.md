@@ -1,24 +1,29 @@
 
 ## Prepare test file
-for unbounded test
-`sed -n '1,20p' wikitext-2-raw/wiki.test.raw > /tmp/prompt_short.txt`
-`sed -n '1,75p' wikitext-2-raw/wiki.test.raw > /tmp/prompt_long.txt`
+# 1034 tokens
+`sed -n '1,17p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_1k.txt`
+# 3817 tokens
+`sed -n '1,75p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_3_8k.txt`
+
+# 4006 tokens
+`sed -n '1,80p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_4k.txt`
 
 
 ## Commands for baseline test and some results
-### Unbounded Baseline With llama-cli
+### Unbounded Baseline With llama-cli - 3.8k tokens prompt
     /usr/bin/time -l ./build/bin/llama-cli \
         -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f /tmp/prompt_long.txt \
+        -f experiments/prompts/wiki_3_8k.txt \
         --single-turn \
         --simple-io \
         --show-timings \
         --perf \
         --temp 0 \
+        --seed 42 \
         --ignore-eos \
         -c 8192 \
         -n 512 \
-        2>&1 | tee /tmp/unbounded_cli.txt
+        2>&1 | tee experiments/unbounded_3_8k_o512.txt
 
 Result:
 - Prompt throughput: `211.6 t/s`
@@ -34,6 +39,21 @@ Result:
   - compute: `32 MiB`
 - Peak RSS: `5463097344 bytes` (`~5.46 GB`)
 - Peak memory footprint: `1188099968 bytes` (`~1133.1 MiB`)
+
+### Unbounded Baseline With llama-cli - 4k tokens prompt
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_4k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/unbounded_4k_o512.txt
 
 
 ### Throughput Benchmark with llama-bench
@@ -80,20 +100,37 @@ Result:
 - Peak RSS: `8428748800 bytes` (`~8.43 GB`)
 - Peak memory footprint: `3713452608 bytes` (`~3.46 GiB`)
 
-# Sliding Window Baseline With llama-cli
+# Sliding Window Baseline With llama-cli - 3.8k tokens
     /usr/bin/time -l ./build/bin/llama-cli \
         -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f /tmp/prompt_long.txt \
+        -f experiments/prompts/wiki_3_8k.txt \
         --single-turn \
         --simple-io \
         --show-timings \
         --perf \
         --temp 0 \
+        --seed 42 \
         --ignore-eos \
         --sliding-window 4096 \
         -c 8192 \
         -n 512 \
-        2>&1 | tee /tmp/sliding_win_cli.txt
+        2>&1 | tee experiments/sliding_win_3_8k_o512.txt
+
+# Sliding Window Baseline With llama-cli
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_4k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --sliding-window 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/sliding_win_4k_o512.txt
 
 Result:
 - Prompt throughput: `211.2 t/s`
@@ -110,20 +147,37 @@ Result:
 - Peak RSS: `5461868544 bytes` (`~5.46 GB`)
 - Peak memory footprint: `684307456 bytes` (`~652.6 MiB`)
 
-# age and importance based policy llama-cli
+# age and importance based policy llama-cli - 3.8k tokens
     /usr/bin/time -l ./build/bin/llama-cli \
         -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f /tmp/prompt_long.txt \
+        -f experiments/prompts/wiki_3_8k.txt \
         --single-turn \
         --simple-io \
         --show-timings \
         --perf \
         --temp 0 \
+        --seed 42 \
         --ignore-eos \
-        --age_eviction 4096 \
+        --age-eviction 4096 \
         -c 8192 \
         -n 512 \
-        2>&1 | tee /tmp/age_based_cli.txt
+        2>&1 | tee experiments/age_based_3_8k_o512.txt
+
+# age and importance based policy llama-cli
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_4k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --age-eviction 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/age_based_4k_o512.txt
 
 Result:
 - Prompt throughput: `211.7 t/s`
