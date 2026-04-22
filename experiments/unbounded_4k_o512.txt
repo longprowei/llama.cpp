@@ -1,0 +1,77 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.024 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 11453.25 MB
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8121-4e0be7145
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of the television series The Long Firm ;  ... (truncated)
+
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000. This was followed by a starring role in the play Herons written by Simon Stephens, which was performed in 2001 at the Royal Court Theatre. He had a guest role in the television series Judge John Deed in 2002. In 2004 Boulter landed a role as "Craig" in the episode "Teddy's Story" of the television series The Long Firm; he starred alongside actors Mark Strong and Derek Jacobi. He was cast in the 2005 theatre productions of the Philip Ridley play Mercury Fur, which was performed at the Drum Theatre in Plymouth and the Menier Chocolate Factory in London. He was directed by John Tiffany and starred alongside Ben Whishaw, Shane Zaza, Harry Kent, Fraser Ayres, Sophie Stanton, and Dominic Hall.
+
+In 2006, Boulter starred alongside Whishaw in the play Citizenship written by Mark Ravenhill. He appeared on a 2006 episode of the television series, Doctors, followed by a role in the 2007 theatre production of How to Curse directed by Josie Rourke. How to Curse was performed at Bush Theatre in the London Borough of Hammersmith and Fulham. Boulter starred in two films in 2008, Daylight Robbery by filmmaker Paris Leonti, and Donkey Punch directed by Olly Blackburn. In May 2008, Boulter made a guest appearance on a two-part episode arc of the television series Waking the Dead, followed by an appearance on the television series Survivors in November 2008. He had a recurring role in ten episodes of the television series Casualty in 2010, as "Kieron Fletcher." Boulter starred in the 2011 film Mercenaries directed by Paris Leonti.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. Along with Li Bai (Li Po), he is frequently called the greatest of the Chinese poets. His greatest ambition was to serve his country as a successful civil servant, but he proved unable to make the necessary accommodations. His life, like the whole country, was devastated by the An Lushan Rebellion of 755, and his last 15 years were a time of almost constant unrest.
+
+Although initially he was little known to other writers, his works came to be hugely influential in both Chinese and Japanese literary culture. Of his poetic writing, nearlyllama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 10922 = 4954 + (5967 =  4685 +    1024 +     258) +           0 |
+llama_memory_breakdown_print: |   - Host                |                  313 =   281 +       0 +      32                |
+ggml_metal_free: deallocating
+
+
+[ Prompt: 210.2 t/s | Generation: 21.8 t/s ]
+
+Exiting...
+       53.15 real         0.82 user         1.88 sys
+          3168010240  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               97001  page reclaims
+              301957  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1181  voluntary context switches
+               52418  involuntary context switches
+         16713255057  instructions retired
+          8265269816  cycles elapsed
+          1185609664  peak memory footprint

@@ -2,8 +2,12 @@
 ## Prepare test file
 # 1034 tokens
 `sed -n '1,17p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_1k.txt`
+
 # 3817 tokens
 `sed -n '1,75p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_3_8k.txt`
+
+# 3935 tokens
+`sed -n '1,79p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_3_9k.txt`
 
 # 4006 tokens
 `sed -n '1,80p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_4k.txt`
@@ -39,6 +43,21 @@ Result:
   - compute: `32 MiB`
 - Peak RSS: `5463097344 bytes` (`~5.46 GB`)
 - Peak memory footprint: `1188099968 bytes` (`~1133.1 MiB`)
+
+### Unbounded Baseline With llama-cli - 3.9k tokens prompt
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_3_9k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/unbounded_3_9k_o512.txt
 
 ### Unbounded Baseline With llama-cli - 4k tokens prompt
     /usr/bin/time -l ./build/bin/llama-cli \
@@ -116,7 +135,23 @@ Result:
         -n 512 \
         2>&1 | tee experiments/sliding_win_3_8k_o512.txt
 
-# Sliding Window Baseline With llama-cli
+# Sliding Window Baseline With llama-cli - 3.9k tokens
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_3_9k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --sliding-window 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/sliding_win_3_9k_o512.txt
+
+# Sliding Window Baseline With llama-cli - 4k tokens
     /usr/bin/time -l ./build/bin/llama-cli \
         -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
         -f experiments/prompts/wiki_4k.txt \
@@ -132,20 +167,6 @@ Result:
         -n 512 \
         2>&1 | tee experiments/sliding_win_4k_o512.txt
 
-Result:
-- Prompt throughput: `211.2 t/s`
-- Generation throughput: `19.2 t/s`
-- Estimated per-token decode latency: `~52.1 ms/token`
-- MTL0 memory breakdown:
-  - model: `4685 MiB`
-  - context: `544 MiB`
-  - compute: `258 MiB`
-- Host memory breakdown:
-  - model: `281 MiB`
-  - context: `0 MiB`
-  - compute: `24 MiB`
-- Peak RSS: `5461868544 bytes` (`~5.46 GB`)
-- Peak memory footprint: `684307456 bytes` (`~652.6 MiB`)
 
 # age and importance based policy llama-cli - 3.8k tokens
     /usr/bin/time -l ./build/bin/llama-cli \
@@ -163,7 +184,23 @@ Result:
         -n 512 \
         2>&1 | tee experiments/age_based_3_8k_o512.txt
 
-# age and importance based policy llama-cli
+# age and importance based policy llama-cli - 3.9k tokens
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_3_9k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --age-eviction 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/age_based_3_9k_o512.txt
+
+# age and importance based policy llama-cli - 4k tokens
     /usr/bin/time -l ./build/bin/llama-cli \
         -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
         -f experiments/prompts/wiki_4k.txt \
@@ -179,27 +216,18 @@ Result:
         -n 512 \
         2>&1 | tee experiments/age_based_4k_o512.txt
 
-Result:
-- Prompt throughput: `211.7 t/s`
-- Generation throughput: `22.0 t/s`
-- Estimated per-token decode latency: `~45.5 ms/token`
-- MTL0 memory breakdown:
-  - model: `4685 MiB`
-  - context: `544 MiB`
-  - compute: `258 MiB`
-- Host memory breakdown:
-  - model: `281 MiB`
-  - context: `0 MiB`
-  - compute: `24 MiB`
-- Peak RSS: `5005361152 bytes` (`~5.01 GB`)
-- Peak memory footprint: `683930432 bytes` (`~652.2 MiB`)
-
-
 # output divergence
   python3 output_divergence.py \
     --name wiki_3_8k_o512 \
     --baseline unbounded_3_8k_o512.txt \
     --sliding sliding_win_3_8k_o512.txt \
     --age age_based_3_8k_o512.txt \
+    --out-dir divergence_results
+
+  python3 output_divergence.py \          
+    --name wiki_4k_o512 \                                    
+    --baseline unbounded_4k_o512.txt \  
+    --sliding sliding_win_4k_o512.txt \  
+    --age age_based_4k_o512.txt  \ 
     --out-dir divergence_results
     
