@@ -55,6 +55,7 @@ def main():
     ap.add_argument("--sliding", required=True, type=Path)
     ap.add_argument("--age", required=True, type=Path)
     ap.add_argument("--out-dir", type=Path, default=None)
+    ap.add_argument("--name", required=True)
     args = ap.parse_args()
 
     baseline = extract_generated_text(args.baseline)
@@ -78,12 +79,13 @@ def main():
 
     if args.out_dir is not None:
         args.out_dir.mkdir(parents=True, exist_ok=True)
+        prefix = args.name
 
-        (args.out_dir / "baseline_clean.txt").write_text(baseline, encoding="utf-8")
-        (args.out_dir / "sliding_clean.txt").write_text(sliding, encoding="utf-8")
-        (args.out_dir / "age_clean.txt").write_text(age, encoding="utf-8")
+        (args.out_dir / f"{prefix}_baseline_clean.txt").write_text(baseline, encoding="utf-8")
+        (args.out_dir / f"{prefix}_sliding_clean.txt").write_text(sliding, encoding="utf-8")
+        (args.out_dir / f"{prefix}_age_clean.txt").write_text(age, encoding="utf-8")
 
-        csv_path = args.out_dir / "summary.csv"
+        csv_path = args.out_dir / f"{prefix}_summary.csv"
         with csv_path.open("w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             writer.writeheader()

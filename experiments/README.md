@@ -193,3 +193,13 @@ Result:
   - compute: `24 MiB`
 - Peak RSS: `5005361152 bytes` (`~5.01 GB`)
 - Peak memory footprint: `683930432 bytes` (`~652.2 MiB`)
+
+
+# output divergence
+  python3 output_divergence.py \
+    --name wiki_3_8k_o512 \
+    --baseline unbounded_3_8k_o512.txt \
+    --sliding sliding_win_3_8k_o512.txt \
+    --age age_based_3_8k_o512.txt \
+    --out-dir divergence_results
+    
