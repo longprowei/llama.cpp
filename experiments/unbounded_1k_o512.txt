@@ -1,0 +1,88 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.023 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 11453.25 MB
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8121-4e0be7145
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of the television series The Long Firm ;  ... (truncated)
+
+It appears that Robert Boulter is a British actor who has worked in film, television, and theatre. Here are some of his notable roles:
+
+* The Bill (2000) - guest starring role as Scott Parry
+* Herons (2001) - starring role as Scott, written by Simon Stephens, performed at the Royal Court Theatre
+* Judge John Deed (2002) - guest role as Addem Armitage
+* The Long Firm (2004) - role as Craig in the episode "Teddy's Story"
+* Mercury Fur (2005) - starring role as Darren, directed by John Tiffany, performed at the Drum Theatre in Plymouth and the Menier Chocolate Factory in London
+* Citizenship (2006) - starring role, written by Mark Ravenhill
+* Doctors (2006) - guest role as Jason Tyler in the episode "Something I Ate"
+* How to Curse (2007) - starring role as William, directed by Josie Rourke, performed at the Bush Theatre in the London Borough of Hammersmith and Fulham
+* Daylight Robbery (2008) - film
+* Donkey Punch (2008) - film
+* Waking the Dead (2008) - guest appearance in a two-part episode arc
+* Survivors (2008) - guest appearance
+* Casualty (2010) - recurring role as Kieron Fletcher in 10 episodes
+* Mercenaries (2011) - film
+
+Boulter has received positive reviews for his performances, with critics praising his intensity and vulnerability on stage. He has worked with notable directors and actors, including John Tiffany, Ben Whishaw, and Mark Strong.llama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 10922 = 4954 + (5967 =  4685 +    1024 +     258) +           0 |
+llama_memory_breakdown_print: |   - Host                |                  313 =   281 +       0 +      32                |
+ggml_metal_free: deallocating
+
+
+[ Prompt: 221.1 t/s | Generation: 24.0 t/s ]
+
+Exiting...
+       24.37 real         0.68 user         1.13 sys
+          6028394496  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               86230  page reclaims
+              296539  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 838  voluntary context switches
+               30513  involuntary context switches
+         12378744591  instructions retired
+          5566491267  cycles elapsed
+          1173763904  peak memory footprint

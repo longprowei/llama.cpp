@@ -1,5 +1,5 @@
 
-## Prepare test file
+## Prepare test prompt files
 # 1034 tokens
 `sed -n '1,17p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_1k.txt`
 
@@ -73,6 +73,21 @@ Result:
         -c 8192 \
         -n 512 \
         2>&1 | tee experiments/unbounded_4k_o512.txt
+
+### Unbounded Baseline With llama-cli - 1k tokens prompt
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_1k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/unbounded_1k_o512.txt
 
 
 ### Throughput Benchmark with llama-bench
@@ -167,6 +182,22 @@ Result:
         -n 512 \
         2>&1 | tee experiments/sliding_win_4k_o512.txt
 
+# Sliding Window Baseline With llama-cli - 1k tokens
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_1k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --sliding-window 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/sliding_win_1k_o512.txt
+
 
 # age and importance based policy llama-cli - 3.8k tokens
     /usr/bin/time -l ./build/bin/llama-cli \
@@ -216,6 +247,22 @@ Result:
         -n 512 \
         2>&1 | tee experiments/age_based_4k_o512.txt
 
+# age and importance based policy llama-cli - 1k tokens
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_1k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --age-eviction 4096 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/age_based_1k_o512.txt
+
 # output divergence
   python3 output_divergence.py \
     --name wiki_3_8k_o512 \
@@ -230,4 +277,18 @@ Result:
     --sliding sliding_win_4k_o512.txt \  
     --age age_based_4k_o512.txt  \ 
     --out-dir divergence_results
+
+  python3 output_divergence.py \                                     
+    --name wiki_3_9k_o512 \
+    --baseline unbounded_3_9k_o512.txt \
+    --sliding sliding_win_3_9k_o512.txt \
+    --age age_based_3_9k_o512.txt \
+    --out-dir divergence_results
+
+    python3 output_divergence.py \
+        --name wiki_1k_o512 \
+        --baseline unbounded_1k_o512.txt \
+        --sliding sliding_win_1k_o512.txt \
+        --age age_based_1k_o512.txt \
+        --out-dir divergence_results
     
