@@ -263,6 +263,40 @@ Result:
         -n 512 \
         2>&1 | tee experiments/age_based_1k_o512.txt
 
+# age and importance based policy llama-cli - 3.9k tokens but use 32 tokens blocks
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_3_9k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --age-eviction 4096 \
+        --age-block-size 32 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/age_based_3_9k_o512_b32.txt
+
+# age and importance based policy llama-cli - 3.9k tokens but use 128 tokens blocks
+    /usr/bin/time -l ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/wiki_3_9k.txt \
+        --single-turn \
+        --simple-io \
+        --show-timings \
+        --perf \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --age-eviction 4096 \
+        --age-block-size 128 \
+        -c 8192 \
+        -n 512 \
+        2>&1 | tee experiments/age_based_3_9k_o512_b128.txt
+
 # output divergence
   python3 output_divergence.py \
     --name wiki_3_8k_o512 \
