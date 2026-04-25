@@ -1,0 +1,78 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.008 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 11453.25 MB
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8121-4e0be7145
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+Important fact: The classroom is Ainsworth-G03.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role a ... (truncated)
+
+Summary:
+The document is a biographical sketch of Robert Boulter, an English film, television, and theatre actor. It provides a detailed account of his career, including his roles in various television series and theatre productions. The document also includes a section on his filmography, listing his appearances in films and television series. Additionally, the document provides a brief overview of the life and works of Chinese poet Du Fu, including his early years, his experiences during the An Lushan Rebellion, and his later years. The document also includes a section on Du Fu's works, highlighting his strong sense of history, moral engagement, and technical excellence.
+
+The document also mentions that the classroom is Ainsworth-G03.
+
+Final answer: Ainsworth-G03.llama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 10922 = 4954 + (5967 =  4685 +    1024 +     258) +           0 |
+llama_memory_breakdown_print: |   - Host                |                  313 =   281 +       0 +      32                |
+ggml_metal_free: deallocating
+
+
+[ Prompt: 210.1 t/s | Generation: 21.7 t/s ]
+
+Exiting...
+       30.86 real         0.87 user         1.06 sys
+          6024855552  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              118154  page reclaims
+              265273  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  13  voluntary context switches
+               21272  involuntary context switches
+         10925730634  instructions retired
+          5078891029  cycles elapsed
+          1187165824  peak memory footprint

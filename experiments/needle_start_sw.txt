@@ -1,0 +1,84 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.008 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 11453.25 MB
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8121-4e0be7145
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+Important fact: The classroom is Ainsworth-G03.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role a ... (truncated)
+
+Summary:
+The document is a biographical sketch of Robert Boulter, an English film, television, and theatre actor. It provides a detailed account of his career, including his roles in various television series and theatre productions. The document also includes a section on his filmography, listing his appearances in films and television series. Additionally, the document provides a brief overview of the life and works of Chinese poet Du Fu, including his early years, his experiences during the An Lushan Rebellion, and his later years. The document also includes a section on Du Fu's works, highlighting his strong sense of history, moral engagement, and technical excellence.
+
+The document also provides information on Du Fu's life, including his birth and death, his family, and his experiences during the An Lushan Rebellion. It also includes a section on Du Fu's poetry, highlighting his use of imagery, symbolism, and metaphor to convey his thoughts and feelings.
+
+Furthermore, the document provides a detailed account of Du Fu's later years, including his time in Chengdu, where he was hosted by local Prefect and fellow poet Pei Di. It also includes information on Du Fu's financial troubles and his reliance on his friends and acquaintances for support.
+
+In addition, the document provides a brief overview of the An Lushan Rebellion, including its causes, course, and consequences. It also includes information on the impact of the rebellion on Chinese society, including the displacement and killing of millions of people.
+
+Overall, the document provides a comprehensive overview of Robert Boulter's career and Du Fu's life and works, highlighting their contributions to the world of theatre and literature.
+
+Final answer: The classroom is not mentioned in the document.llama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 10922 = 5434 + (5487 =  4685 +     544 +     258) +           0 |
+llama_memory_breakdown_print: |   - Host                |                  306 =   281 +       0 +      24                |
+ggml_metal_free: deallocating
+
+
+[ Prompt: 210.6 t/s | Generation: 17.0 t/s ]
+
+Exiting...
+       41.47 real         2.96 user         0.85 sys
+          5594988544  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              328624  page reclaims
+               20762  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  12  voluntary context switches
+               10077  involuntary context switches
+         22914955344  instructions retired
+          8039489073  cycles elapsed
+           683799296  peak memory footprint

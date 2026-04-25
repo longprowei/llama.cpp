@@ -1,0 +1,79 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.008 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 11453.25 MB
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8121-4e0be7145
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+The document is a biographical sketch of Robert Boulter, an English film, television, and theatre actor. The document provides a detailed account of his career, including his guest starring roles in television series such as "The Bill" and "Judge John Deed," as well as his starring roles in plays such as "Heron" and "Mercury Fur." The document also highlights his work in film, including his roles in "Daylight Robbery" and "Donkey Punch." Additionally, the document provides information about his personal life, including his family and his struggles with health issues.
+
+The document also provides a detailed account of the life of Du Fu, a prominent Chinese poet of the Tang dynasty. The document discusses his early life, including his birth and upbringing, as well as his education and his failure to pass the civil service exam. The document also discusses his relationship with Li Bai, a fellow poet, and his experiences during the An Lushan Rebellion. The document highlights Du Fu's poetic talent and his ability to write about the suffering of others, even in the face of his own personal struggles.
+
+The document also provides information about the classroom, which is located in Ainsworth-G03.
+
+Final answer: The classroom is Ainsworth-G03.llama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 10922 = 5434 + (5487 =  4685 +     544 +     258) +           0 |
+llama_memory_breakdown_print: |   - Host                |                  306 =   281 +       0 +      24                |
+ggml_metal_free: deallocating
+
+
+[ Prompt: 210.1 t/s | Generation: 16.7 t/s ]
+
+Exiting...
+       36.43 real         2.75 user         0.74 sys
+          5618450432  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              338765  page reclaims
+               10773  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  10  voluntary context switches
+                8450  involuntary context switches
+         18183701138  instructions retired
+          6524042563  cycles elapsed
+           684487616  peak memory footprint
