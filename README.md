@@ -1,3 +1,10 @@
+## Project Note
+
+This repository is based on the upstream [`ggml-org/llama.cpp`](https://github.com/ggml-org/llama.cpp) project and includes experimental KV-Cache memory management modifications.
+
+For project-specific details, see [`experiments/README.md`](experiments/README.md).
+
+
 # llama.cpp
 
 ![llama](https://user-images.githubusercontent.com/1991296/230134379-7181e485-c521-4d23-a0d6-f7b3b61ba524.png)
