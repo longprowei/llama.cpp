@@ -1232,8 +1232,9 @@ private:
             slot.has_next_token = true;
         }
 
-        // if context shifting is disabled, make sure that we don't run out of context
-        if (!params_base.ctx_shift && slot.prompt.n_tokens() + 1 >= slot.n_ctx) {
+        // if context shifting or policy shift is disabled, make sure that we don't run out of context
+        const bool use_policy_shift = params_base.sliding_window || params_base.age_eviction;
+        if (!params_base.ctx_shift && !use_policy_shift && slot.prompt.n_tokens() + 1 >= slot.n_ctx) {
             slot.truncated      = true;
             slot.stop           = STOP_TYPE_LIMIT;
             slot.has_next_token = false;
@@ -1968,14 +1969,13 @@ private:
             }
 
             const int sw_keep = add_bos_token ? 1 : 0;
-            const int policy_budget = params_base.age_eviction > 0 ? params_base.age_eviction : params_base.sliding_window;
-            const bool use_age_eviction = params_base.age_eviction > 0;
-
+            const bool use_sliding_window = params_base.sliding_window;
+            const bool use_age_eviction = params_base.age_eviction;
+            const bool use_policy_shift = use_sliding_window || use_age_eviction;
             const bool need_ctx_shift = slot.prompt.n_tokens() + 1 >= slot.n_ctx;
-            const bool need_policy_shift = policy_budget > 0 && slot.prompt.n_tokens() + 1 > sw_keep + policy_budget;
 
-            if (need_ctx_shift || need_policy_shift) {
-                if (!params_base.ctx_shift && !need_policy_shift) {
+            if (need_ctx_shift) {
+                if (!params_base.ctx_shift && !use_policy_shift) {
                     // this check is redundant (for good)
                     // we should never get here, because generation should already stopped in process_token()
                     send_error(slot, "context or policy shift is disabled", ERROR_TYPE_SERVER);
@@ -1997,11 +1997,11 @@ private:
 
                 int n_keep = 0;
                 int n_discard = 0;
-                if (need_policy_shift) {
+                if (use_policy_shift) {
                     if (!use_age_eviction) {
                         // slide window policy
                         n_keep = sw_keep;
-                        n_discard = slot.prompt.n_tokens() + 1 - (n_keep + params_base.sliding_window);
+                        n_discard = std::max(1, slot.prompt.n_tokens() + 1 - slot.n_ctx);
 
                         GGML_ASSERT(n_discard >= 0);
                         GGML_ASSERT(n_discard <= slot.prompt.n_tokens() - n_keep);
@@ -2011,7 +2011,8 @@ private:
                         const int keep_start = std::min(params_base.age_keep_start, slot.task->n_tokens());
                         const int prefix_keep = std::min(slot.prompt.n_tokens(), sw_keep + keep_start);
                         const int block_size = params_base.age_block_size;
-                        const int need_free = slot.prompt.n_tokens() + 1 - (sw_keep + policy_budget);
+                        const int policy_budget = slot.n_ctx - sw_keep - 1;
+                        const int need_free = std::max(1, slot.prompt.n_tokens() + 1 - (sw_keep + policy_budget));
 
                         // default keep the recent token, either 2 block size or 1/3 budget window size
                         const int recent_keep_default = std::max(block_size * 2, policy_budget / 3);

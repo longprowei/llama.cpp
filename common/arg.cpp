@@ -1271,24 +1271,18 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ));
     add_opt(common_arg(
-        {"--sliding-window"}, "N",
-        string_format("keep most recent N tokens in sliding window policy, 0 is disabled of sliding window policy (default: %d)", params.sliding_window),
-        [](common_params & params, int value) {
-            if (value < 0) {
-                throw std::invalid_argument("invalid value");
-            }
-            params.sliding_window = value;
+        {"--sliding-window"},
+        "enable sliding window policy",
+        [](common_params & params) {
+            params.sliding_window = true;
         }
     ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY})
      .set_env("LLAMA_ARG_SLIDING_WINDOW"));
      add_opt(common_arg(
-        {"--age-eviction"}, "N",
-        string_format("use age and importance based eviction policy with bounded N tokens, 0 is disabled of age-eviction policy (default: %d)", params.age_eviction),
-        [](common_params & params, int value) {
-            if (value < 0) {
-                throw std::invalid_argument("invalid value");
-            }
-            params.age_eviction = value;
+        {"--age-eviction"},
+        "enable age and importancebased eviction policy",
+        [](common_params & params) {
+            params.age_eviction = true;
         }
     ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY})
      .set_env("LLAMA_ARG_AGE_EVICTION"));

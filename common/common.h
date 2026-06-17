@@ -375,8 +375,8 @@ struct common_params {
     float   yarn_beta_fast        = -1.0f; // YaRN low correction dim
     float   yarn_beta_slow        = -1.0f; // YaRN high correction dim
     int32_t yarn_orig_ctx         =     0; // YaRN original context length
-    int32_t sliding_window        =     0; // keep most recent N tokens in sliding window policy, 0 is disabled of sliding window policy
-    int32_t age_eviction          =     0; // Age and importance eviction policy keep N tokens base on age and importance, 0 is disabled
+    bool    sliding_window        =     false; // enable sliding window policy
+    bool    age_eviction          =     false; // enable age and importance eviction policy
     int32_t age_keep_start        =   128; // keep first N prompt tokens after BOS in age eviction policy
     int32_t age_block_size        =    64; // evict one middle block of this size in age eviction policy
 
