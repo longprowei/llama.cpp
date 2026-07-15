@@ -48,6 +48,8 @@ enum server_state {
 struct server_slot {
     int id;
 
+    std::vector<float> h2o_scores;
+
     // TODO: change to unique_ptrs for consistency:
     llama_context * ctx = nullptr;
 
@@ -134,6 +136,7 @@ struct server_slot {
 
         llama_memory_seq_rm(llama_get_memory(ctx), id, -1, -1);
         prompt.tokens.clear();
+        h2o_scores.clear();
     }
 
     std::vector<common_adapter_lora_info> lora;
@@ -192,6 +195,7 @@ struct server_slot {
 
         // clear alora start
         alora_invocation_start = -1;
+        h2o_scores.clear();
     }
 
     void init_sampler() const {
@@ -450,10 +454,64 @@ struct server_slot {
 
         other.prompt = prompt.clone();
         other.init_sampler();
+        other.h2o_scores = h2o_scores;
     }
 };
 
+// for heavy-hitter policy
+struct h2o_attn_capture {
+    server_slot * slot = nullptr;
+    std::vector<uint8_t> data;
+};
 
+static bool h2o_cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
+    auto * cap = (h2o_attn_capture *) user_data;
+
+    const bool active = cap != nullptr && cap->slot != nullptr;
+    const bool is_h2o_attn = std::strncmp(t->name, "kq_soft_max", std::strlen("kq_soft_max")) == 0;
+
+    if (ask) {
+        return active && is_h2o_attn;
+    }
+
+    if (!active || !is_h2o_attn || t->type != GGML_TYPE_F32) {
+        return true;
+    }
+
+    auto & scores = cap->slot->h2o_scores;
+    scores.resize(cap->slot->prompt.tokens.size(), 0.0f);
+
+    cap->data.resize(ggml_nbytes(t));
+    ggml_backend_tensor_get(t, cap->data.data(), 0, cap->data.size());
+
+    const uint8_t * base = cap->data.data();
+
+    const int64_t n_kv = t->ne[0];
+    const int64_t n_q  = t->ne[1];
+    const int64_t n_h  = t->ne[2];
+    const int64_t n_s  = t->ne[3];
+
+    const int n = std::min<int>((int) scores.size(), (int) n_kv);
+
+    for (int ikv = 0; ikv < n; ++ikv) {
+        float acc = 0.0f;
+
+        for (int iq = 0; iq < n_q; iq++) {
+            for (int ih = 0; ih < n_h; ih++) {
+                for (int is = 0; is < n_s; is++) {
+                    const uint8_t * p = base + ikv * t->nb[0] + iq * t->nb[1] + ih * t->nb[2] + is * t->nb[3];
+                    float v;
+                    std::memcpy(&v, p, sizeof(float));
+                    acc += v;
+                }
+            }
+        }
+
+        scores[ikv] += acc / std::max<int64_t>(1, n_q*n_h*n_s);
+    }
+
+    return true;
+}
 
 //
 // server_metrics
@@ -574,6 +632,8 @@ private:
 
     server_metrics metrics;
 
+    h2o_attn_capture h2o_attn;
+
     json json_webui_settings = json::object();
 
     // Necessary similarity of prompt for slot selection
@@ -622,6 +682,11 @@ private:
         SRV_INF("loading model '%s'\n", params.model.path.c_str());
 
         params_base = params;
+        if (params_base.h2o_eviction) {
+            params_base.flash_attn_type = LLAMA_FLASH_ATTN_TYPE_DISABLED;
+            params_base.cb_eval = h2o_cb_eval;
+            params_base.cb_eval_user_data = &h2o_attn;
+        }
 
         llama_init = common_init_from_params(params_base);
 
@@ -1233,7 +1298,7 @@ private:
         }
 
         // if context shifting or policy shift is disabled, make sure that we don't run out of context
-        const bool use_policy_shift = params_base.sliding_window || params_base.age_eviction;
+        const bool use_policy_shift = params_base.sliding_window || params_base.age_eviction || params_base.h2o_eviction;
         if (!params_base.ctx_shift && !use_policy_shift && slot.prompt.n_tokens() + 1 >= slot.n_ctx) {
             slot.truncated      = true;
             slot.stop           = STOP_TYPE_LIMIT;
@@ -1971,7 +2036,8 @@ private:
             const int sw_keep = add_bos_token ? 1 : 0;
             const bool use_sliding_window = params_base.sliding_window;
             const bool use_age_eviction = params_base.age_eviction;
-            const bool use_policy_shift = use_sliding_window || use_age_eviction;
+            const bool use_h2o_eviction = params_base.h2o_eviction;
+            const bool use_policy_shift = use_sliding_window || use_age_eviction || use_h2o_eviction;
             const bool need_ctx_shift = slot.prompt.n_tokens() + 1 >= slot.n_ctx;
 
             if (need_ctx_shift) {
@@ -1998,7 +2064,50 @@ private:
                 int n_keep = 0;
                 int n_discard = 0;
                 if (use_policy_shift) {
-                    if (!use_age_eviction) {
+                    if (use_h2o_eviction) {
+                        // hevry-hitter policy
+                        slot.h2o_scores.resize(slot.prompt.tokens.size(), 0.0f);
+
+                        const int keep_start  = std::min(params_base.h2o_keep_start, slot.task->n_tokens());
+                        const int prefix_keep = std::min(slot.prompt.n_tokens(), sw_keep + keep_start);
+                        const int need_free   = std::max(1, slot.prompt.n_tokens() + 1 - slot.n_ctx);
+
+                        const int usable_budget = std::max(1, slot.n_ctx - prefix_keep - 1);
+                        const int recent_keep_default = std::max(1, (int) (usable_budget * params_base.h2o_recent_ratio));
+                        const int recent_keep_cap = std::max(0, slot.prompt.n_tokens() - prefix_keep - 1);
+                        const int recent_keep = std::min(recent_keep_default, recent_keep_cap);
+
+                        const int middle_begin = prefix_keep;
+                        const int middle_end   = slot.prompt.n_tokens() - recent_keep;
+
+                        if (middle_end <= middle_begin) {
+                            n_keep = sw_keep;
+                            n_discard = std::max(1, slot.prompt.n_tokens() + 1 - slot.n_ctx);
+                            SLT_WRN(slot, "h2o fallback to sliding, n_keep = %d, n_discard = %d\n", n_keep, n_discard);
+                        } else {
+                            const int victim_size = std::min(need_free, middle_end - middle_begin);
+
+                            int victim_begin = middle_begin;
+                            float best_score = std::numeric_limits<float>::infinity();
+
+                            for (int p = middle_begin; p + victim_size <= middle_end; ++p) {
+                                float s = 0.0f;
+                                for (int j = 0; j < victim_size; ++j) {
+                                    s += slot.h2o_scores[p + j];
+                                }
+                                if (s < best_score) {
+                                    best_score = s;
+                                    victim_begin = p;
+                                }
+                            }
+
+                            n_keep = victim_begin;
+                            n_discard = victim_size;
+
+                            SLT_WRN(slot, "h2o eviction, prefix_keep = %d, recent_keep = %d, victim = [%d,%d), score = %.6f\n",
+                                    prefix_keep, recent_keep, n_keep, n_keep + n_discard, best_score);
+                        }
+                    } else if (!use_age_eviction) {
                         // slide window policy
                         n_keep = sw_keep;
                         n_discard = std::max(1, slot.prompt.n_tokens() + 1 - slot.n_ctx);
@@ -2076,6 +2185,13 @@ private:
 
                 llama_memory_seq_rm (llama_get_memory(ctx), slot.id, n_keep            , n_keep + n_discard);
                 llama_memory_seq_add(llama_get_memory(ctx), slot.id, n_keep + n_discard, slot.prompt.n_tokens(), -n_discard);
+
+                if (params_base.h2o_eviction) {
+                    // erase matching h2o scores
+                    slot.h2o_scores.erase(
+                        slot.h2o_scores.begin() + n_keep,
+                        slot.h2o_scores.begin() + n_keep + n_discard);
+                }
 
                 // add generated tokens to cache
                 // ref: https://github.com/ggml-org/llama.cpp/pull/16818#discussion_r2473269481
@@ -2177,6 +2293,9 @@ private:
                 common_batch_add(batch, slot.sampled, slot.prompt.tokens.pos_next(), { slot.id }, true);
 
                 slot.prompt.tokens.push_back(slot.sampled);
+                if (params_base.h2o_eviction) {
+                    slot.h2o_scores.resize(slot.prompt.tokens.size(), 0.0f);
+                }
 
                 SLT_DBG(slot, "slot decode token, n_ctx = %d, n_tokens = %d, truncated = %d\n",
                         slot.n_ctx, slot.prompt.n_tokens(), slot.truncated);
@@ -2591,6 +2710,9 @@ private:
                             { slot.id },
                             slot.task->need_embd());
                         slot.prompt.tokens.push_back(cur_tok);
+                        if (params_base.h2o_eviction) {
+                            slot.h2o_scores.resize(slot.prompt.tokens.size(), 0.0f);
+                        }
 
                         slot.n_prompt_tokens_processed++;
 
@@ -2703,7 +2825,21 @@ private:
                 batch.logits   + i,
             };
 
+            // set which slot should receive scores
+            server_slot * h2o_slot = nullptr;
+            if (params_base.h2o_eviction && n_tokens == 1 && batch_view.n_seq_id[0] == 1) {
+                const llama_seq_id seq_id = batch_view.seq_id[0][0];
+
+                for (server_slot & slot : slots) {
+                    if (slot.id == seq_id && slot.state == SLOT_STATE_GENERATING) {
+                        h2o_slot = &slot;
+                        break;
+                    }
+                }
+            }
+            h2o_attn.slot = h2o_slot;
             const int ret = llama_decode(ctx, batch_view);
+            h2o_attn.slot = nullptr;
 
             metrics.on_decoded(slots);
 

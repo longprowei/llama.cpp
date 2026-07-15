@@ -1308,6 +1308,34 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ).set_examples({LLAMA_EXAMPLE_CLI, LLAMA_EXAMPLE_PERPLEXITY}));
     add_opt(common_arg(
+        {"--h2o-eviction"},
+        "enable heavy-hitter eviction policy",
+        [](common_params & params) {
+            params.h2o_eviction = true;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI})
+    .set_env("LLAMA_ARG_H2O_EVICTION"));
+
+    add_opt(common_arg(
+        {"--h2o-keep-start"}, "N",
+        string_format("keep first N prompt tokens in heavy-hitter policy (default: %d)", params.h2o_keep_start),
+        [](common_params & params, int value) {
+            if (value < 0) throw std::invalid_argument("invalid value");
+            params.h2o_keep_start = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI}));
+
+    add_opt(common_arg(
+        {"--h2o-recent-ratio"}, "N",
+        string_format("recent-token protection ratio in heavy-hitter policy (default: %.2f)", (double) params.h2o_recent_ratio),
+        [](common_params & params, const std::string & value) {
+            params.h2o_recent_ratio = std::stof(value);
+            if (params.h2o_recent_ratio < 0.0f || params.h2o_recent_ratio > 1.0f) {
+                throw std::invalid_argument("invalid value");
+            }
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI}));
+    add_opt(common_arg(
         {"--swa-full"},
         string_format("use full-size SWA cache (default: %s)\n"
             "[(more info)](https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)", params.swa_full ? "true" : "false"),

@@ -304,6 +304,22 @@ wiki_3_9k_needle_start.txt, wiki_3_9k_needle_middle.txt, wiki_3_9k_needle_end.tx
         -n 512 \
         2>&1 | tee experiments/age_based_3_9k_o512_b128.txt
 
+## h2o eviction test
+    /usr/bin/time -l ./build/bin/llama-cli \
+            -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+            -f experiments/prompts/wiki_3_9k.txt \
+            --single-turn \
+            --simple-io \
+            --show-timings \
+            --perf \
+            --temp 0 \
+            --seed 42 \
+            --ignore-eos \
+            --h2o-eviction \
+            -c 4096 \
+            -n 512 \
+            2>&1 | tee experiments/h2o_3_9k_o512.txt
+
 ### Generate the divergence results
 #### Output divergence
     python3 output_divergence.py \
@@ -477,3 +493,4 @@ wiki_3_9k_needle_start.txt, wiki_3_9k_needle_middle.txt, wiki_3_9k_needle_end.tx
     -f experiments/prompts/wiki_3_9k_needle_start.txt \
     --show-count \
     --log-disable
+

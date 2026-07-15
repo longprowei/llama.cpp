@@ -375,10 +375,13 @@ struct common_params {
     float   yarn_beta_fast        = -1.0f; // YaRN low correction dim
     float   yarn_beta_slow        = -1.0f; // YaRN high correction dim
     int32_t yarn_orig_ctx         =     0; // YaRN original context length
-    bool    sliding_window        =     false; // enable sliding window policy
-    bool    age_eviction          =     false; // enable age and importance eviction policy
+    bool    sliding_window        = false; // enable sliding window policy
+    bool    age_eviction          = false; // enable age and importance eviction policy
     int32_t age_keep_start        =   128; // keep first N prompt tokens after BOS in age eviction policy
     int32_t age_block_size        =    64; // evict one middle block of this size in age eviction policy
+    bool    h2o_eviction          = false; // enable heavy-hitter policy
+    int32_t h2o_keep_start        =   0; // keep first N prompt tokens in heavy-hitter policy 
+    float   h2o_recent_ratio      = 0.50f; // keep recent tokens ratio
 
     // offload params
     std::vector<ggml_backend_dev_t> devices; // devices to use for offloading

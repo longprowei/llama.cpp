@@ -1067,8 +1067,11 @@ common_init_result::common_init_result(common_params & params) :
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
-    if (params.sliding_window && params.age_eviction) {
-        LOG_ERR("%s: --sliding-window and --age-eviction cannot be used together\n", __func__);
+    const int bounded_policies_num = (params.sliding_window ? 1 : 0) +
+                            (params.age_eviction   ? 1 : 0) +
+                            (params.h2o_eviction   ? 1 : 0);
+    if (bounded_policies_num > 1) {
+        LOG_ERR("%s: --sliding-window, --age-eviction and --h2o-eviction cannot be used together\n", __func__);
         return;
     }
 
@@ -1187,12 +1190,13 @@ common_init_result_ptr common_init_from_params(common_params & params) {
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
-    const bool needs_shift = params.ctx_shift || params.age_eviction || params.sliding_window;
+    const bool needs_shift = params.ctx_shift || params.age_eviction || params.sliding_window || params.h2o_eviction;
     if (needs_shift && !llama_memory_can_shift(llama_get_memory(lctx))) {
         LOG_WRN("%s: KV cache shifting is not supported for this context, disabling KV cache shifting or bounded KV policies\n", __func__);
         params.ctx_shift = false;
         params.sliding_window = false;
         params.age_eviction = false;
+        params.h2o_eviction = false;
     }
 
     if (!params.control_vectors.empty()) {
