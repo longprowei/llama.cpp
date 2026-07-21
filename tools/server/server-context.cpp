@@ -507,10 +507,39 @@ static bool h2o_cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
             }
         }
 
-        scores[ikv] += acc / std::max<int64_t>(1, n_q*n_h*n_s);
+        scores[ikv] += acc / std::max<int64_t>(1, n_h * n_s);
     }
 
     return true;
+}
+
+static server_slot * h2o_slot_from_batch(const llama_batch & batch_view, std::vector<server_slot> & slots) {
+    if (batch_view.n_tokens <= 0 || batch_view.n_seq_id == nullptr || batch_view.seq_id == nullptr) {
+        return nullptr;
+    }
+
+    if (batch_view.n_seq_id[0] != 1 || batch_view.seq_id[0] == nullptr) {
+        return nullptr;
+    }
+
+    const llama_seq_id seq_id = batch_view.seq_id[0][0];
+
+    for (int32_t i = 1; i < batch_view.n_tokens; ++i) {
+        if (batch_view.n_seq_id[i] != 1 || batch_view.seq_id[i] == nullptr || batch_view.seq_id[i][0] != seq_id) {
+            return nullptr;
+        }
+    }
+
+    for (server_slot & slot : slots) {
+        if (slot.id == seq_id &&
+            (slot.state == SLOT_STATE_PROCESSING_PROMPT ||
+             slot.state == SLOT_STATE_DONE_PROMPT ||
+             slot.state == SLOT_STATE_GENERATING)) {
+            return &slot;
+        }
+    }
+
+    return nullptr;
 }
 
 //
@@ -2825,18 +2854,8 @@ private:
                 batch.logits   + i,
             };
 
-            // set which slot should receive scores
-            server_slot * h2o_slot = nullptr;
-            if (params_base.h2o_eviction && n_tokens == 1 && batch_view.n_seq_id[0] == 1) {
-                const llama_seq_id seq_id = batch_view.seq_id[0][0];
-
-                for (server_slot & slot : slots) {
-                    if (slot.id == seq_id && slot.state == SLOT_STATE_GENERATING) {
-                        h2o_slot = &slot;
-                        break;
-                    }
-                }
-            }
+            // set which slot should receive H2O attention scores
+            server_slot * h2o_slot = params_base.h2o_eviction ? h2o_slot_from_batch(batch_view, slots) : nullptr;
             h2o_attn.slot = h2o_slot;
             const int ret = llama_decode(ctx, batch_view);
             h2o_attn.slot = nullptr;
