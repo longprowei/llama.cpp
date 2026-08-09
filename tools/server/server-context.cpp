@@ -462,6 +462,8 @@ struct server_slot {
 struct h2o_attn_capture {
     server_slot * slot = nullptr;
     std::vector<uint8_t> data;
+    std::vector<llama_pos> cell_to_pos;
+    llama_pos mapped_pos_max = -1;
 };
 
 static bool h2o_cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
@@ -491,9 +493,32 @@ static bool h2o_cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
     const int64_t n_h  = t->ne[2];
     const int64_t n_s  = t->ne[3];
 
-    const int n = std::min<int>((int) scores.size(), (int) n_kv);
+    // map physical KV cells to logical token positions after eviction
+    llama_memory_t memory = llama_get_memory(cap->slot->ctx);
+    const llama_pos pos_max = llama_memory_seq_pos_max(memory, cap->slot->id);
+    const bool refresh_mapping = cap->mapped_pos_max != pos_max ||
+            cap->cell_to_pos.size() != (size_t) n_kv;
 
-    for (int ikv = 0; ikv < n; ++ikv) {
+    if (refresh_mapping) {
+        cap->cell_to_pos.resize(n_kv);
+        const bool has_cell_mapping = llama_memory_seq_get_cell_positions(
+                memory,
+                cap->slot->id,
+                cap->cell_to_pos.data(),
+                cap->cell_to_pos.size());
+        GGML_ASSERT(has_cell_mapping && "H2O requires physical KV-cell position mapping");
+
+        cap->mapped_pos_max = pos_max;
+    }
+
+    for (int ikv = 0; ikv < n_kv; ++ikv) {
+        const llama_pos logical_pos = cap->cell_to_pos[ikv];
+        if (logical_pos < 0) {
+            continue;
+        }
+
+        GGML_ASSERT((size_t) logical_pos < scores.size());
+
         float acc = 0.0f;
 
         for (int iq = 0; iq < n_q; iq++) {
@@ -507,7 +532,7 @@ static bool h2o_cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
             }
         }
 
-        scores[ikv] += acc / std::max<int64_t>(1, n_h * n_s);
+        scores[logical_pos] += acc / std::max<int64_t>(1, n_h * n_s);
     }
 
     return true;
@@ -2857,6 +2882,7 @@ private:
             // set which slot should receive H2O attention scores
             server_slot * h2o_slot = params_base.h2o_eviction ? h2o_slot_from_batch(batch_view, slots) : nullptr;
             h2o_attn.slot = h2o_slot;
+            h2o_attn.mapped_pos_max = -1;
             const int ret = llama_decode(ctx, batch_view);
             h2o_attn.slot = nullptr;
 

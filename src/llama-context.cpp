@@ -3282,6 +3282,18 @@ llama_pos llama_memory_seq_pos_max(
     return mem->seq_pos_max(seq_id);
 }
 
+bool llama_memory_seq_get_cell_positions(
+            llama_memory_t mem,
+            llama_seq_id seq_id,
+            llama_pos * positions,
+            size_t n_cells) {
+    if (!mem) {
+        return false;
+    }
+
+    return mem->seq_get_cell_positions(seq_id, positions, n_cells);
+}
+
 bool llama_memory_can_shift(llama_memory_t mem) {
     if (!mem) {
         return false;

@@ -493,6 +493,24 @@ llama_pos llama_kv_cache::seq_pos_max(llama_seq_id seq_id) const {
     return cells.seq_pos_max(seq_id);
 }
 
+bool llama_kv_cache::seq_get_cell_positions(llama_seq_id seq_id, llama_pos * positions, size_t n_cells) const {
+    if (seq_id < 0 || (size_t) seq_id >= seq_to_stream.size()) {
+        return false;
+    }
+
+    const auto & cells = v_cells[seq_to_stream[seq_id]];
+
+    if ((positions == nullptr && n_cells > 0) || n_cells > cells.size()) {
+        return false;
+    }
+
+    for (size_t i = 0; i < n_cells; ++i) {
+        positions[i] = !cells.is_empty(i) && cells.seq_has(i, seq_id) ? cells.pos_get(i) : -1;
+    }
+
+    return true;
+}
+
 std::map<ggml_backend_buffer_type_t, size_t> llama_kv_cache::memory_breakdown() const {
     std::map<ggml_backend_buffer_type_t, size_t> ret;
     for (const auto & [ctx, buf] : ctxs_bufs) {

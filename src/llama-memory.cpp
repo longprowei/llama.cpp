@@ -57,3 +57,11 @@ bool llama_memory_status_is_fail(llama_memory_status status) {
 
     return false;
 }
+
+bool llama_memory_i::seq_get_cell_positions(llama_seq_id seq_id,llama_pos * positions, size_t n_cells) const {
+    (void) seq_id;
+    (void) positions;
+    (void) n_cells;
+
+    return false;
+}

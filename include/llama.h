@@ -748,6 +748,14 @@ extern "C" {
             llama_memory_t mem,
               llama_seq_id seq_id);
 
+    // get logical token positions for physical KV cells
+    // return false if unsupported, -1 means empty or not in seq_id
+    LLAMA_API bool llama_memory_seq_get_cell_positions(
+            llama_memory_t mem,
+              llama_seq_id seq_id,
+                 llama_pos * positions,
+                    size_t n_cells);
+
     // Check if the memory supports shifting
     LLAMA_API bool llama_memory_can_shift(llama_memory_t mem);
 
