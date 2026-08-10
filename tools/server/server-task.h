@@ -148,6 +148,8 @@ struct server_task {
     bool                    cli = false;
     std::string             cli_prompt;
     std::vector<raw_buffer> cli_files;
+    bool                    cli_nll = false;
+    std::vector<llama_token> cli_nll_tokens;
 
     server_task_type type;
 
@@ -312,6 +314,7 @@ using server_task_result_ptr = std::unique_ptr<server_task_result>;
 struct completion_token_output {
     llama_token tok;
     float prob;
+    double logprob = 0.0;
     std::string text_to_send;
     struct prob_info {
         llama_token tok;

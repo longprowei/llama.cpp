@@ -496,3 +496,77 @@ wiki_3_9k_needle_start.txt, wiki_3_9k_needle_middle.txt, wiki_3_9k_needle_end.tx
     --show-count \
     --log-disable
 
+## Token-level NLL drift evaluation
+
+These commands record an unbounded reference sequence and replay the same token IDs under each KV-cache policy. Run the unbounded command first because every policy command reads its CSV file.
+
+### Unbounded reference
+
+./build/bin/llama-cli \
+    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+    -f experiments/prompts/wiki_3_9k.txt \
+    --single-turn \
+    --simple-io \
+    --temp 0 \
+    --seed 42 \
+    --ignore-eos \
+    -fa off \
+    -c 8192 \
+    -n 512 \
+    --nll-output experiments/nll_unbounded_3_9k_o512.csv \
+    > experiments/nll_unbounded_3_9k_o512.out
+
+### Sliding-window replay
+
+./build/bin/llama-cli \
+    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+    -f experiments/prompts/wiki_3_9k.txt \
+    --single-turn \
+    --simple-io \
+    --temp 0 \
+    --seed 42 \
+    --ignore-eos \
+    --sliding-window \
+    -fa off \
+    -c 4096 \
+    --nll-reference experiments/nll_unbounded_3_9k_o512.csv \
+    --nll-output experiments/nll_sliding_3_9k_o512.csv \
+    > experiments/nll_sliding_3_9k_o512.out
+
+### Age-based replay
+
+./build/bin/llama-cli \
+    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+    -f experiments/prompts/wiki_3_9k.txt \
+    --single-turn \
+    --simple-io \
+    --temp 0 \
+    --seed 42 \
+    --ignore-eos \
+    --age-eviction \
+    --age-keep-start 128 \
+    --age-block-size 64 \
+    -fa off \
+    -c 4096 \
+    --nll-reference experiments/nll_unbounded_3_9k_o512.csv \
+    --nll-output experiments/nll_age_3_9k_o512.csv \
+    > experiments/nll_age_3_9k_o512.out
+
+### H2O replay
+
+./build/bin/llama-cli \
+    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+    -f experiments/prompts/wiki_3_9k.txt \
+    --single-turn \
+    --simple-io \
+    --temp 0 \
+    --seed 42 \
+    --ignore-eos \
+    --h2o-eviction \
+    --h2o-keep-start 0 \
+    --h2o-recent-ratio 0.5 \
+    -fa off \
+    -c 4096 \
+    --nll-reference experiments/nll_unbounded_3_9k_o512.csv \
+    --nll-output experiments/nll_h2o_3_9k_o512.csv \
+    > experiments/nll_h2o_3_9k_o512.out

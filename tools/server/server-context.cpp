@@ -14,6 +14,7 @@
 
 #include <cstddef>
 #include <cinttypes>
+#include <cmath>
 #include <memory>
 #include <filesystem>
 
@@ -465,6 +466,28 @@ struct h2o_attn_capture {
     std::vector<llama_pos> cell_to_pos;
     llama_pos mapped_pos_max = -1;
 };
+
+static double token_logprob(llama_context * ctx, const llama_vocab * vocab, int idx, llama_token token) {
+    llama_synchronize(ctx);
+
+    const float * logits = llama_get_logits_ith(ctx, idx);
+    const int32_t n_vocab = llama_vocab_n_tokens(vocab);
+
+    GGML_ASSERT(logits != nullptr);
+    GGML_ASSERT(token >= 0 && token < n_vocab);
+
+    float max_logit = logits[0];
+    for (int32_t i = 1; i < n_vocab; ++i) {
+        max_logit = std::max(max_logit, logits[i]);
+    }
+
+    double sum = 0.0;
+    for (int32_t i = 0; i < n_vocab; ++i) {
+        sum += std::exp((double) logits[i] - max_logit);
+    }
+
+    return (double) logits[token] - max_logit - std::log(sum);
+}
 
 static bool h2o_cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
     auto * cap = (h2o_attn_capture *) user_data;
@@ -1304,6 +1327,10 @@ private:
         const std::string token_str = result.text_to_send;
         slot.sampled = result.tok;
 
+        if (slot.task->cli_nll) {
+            slot.add_token(result);
+        }
+
         slot.generated_text += token_str;
         if (slot.task->params.return_tokens) {
             slot.generated_tokens.push_back(result.tok);
@@ -1341,7 +1368,9 @@ private:
                 result.text_to_send = "";
             }
 
-            slot.add_token(result);
+            if (!slot.task->cli_nll) {
+                slot.add_token(result);
+            }
             if (slot.task->params.stream) {
                 send_partial_response(slot, result, false);
             }
@@ -3012,7 +3041,17 @@ private:
 
                 const int tok_idx = slot.i_batch - i;
 
-                llama_token id = common_sampler_sample(slot.smpl.get(), ctx, tok_idx);
+                llama_token id;
+                if (!slot.task->cli_nll_tokens.empty()) {
+                    GGML_ASSERT((size_t) slot.n_decoded < slot.task->cli_nll_tokens.size());
+                    id = slot.task->cli_nll_tokens[slot.n_decoded];
+                } else {
+                    id = common_sampler_sample(slot.smpl.get(), ctx, tok_idx);
+                }
+
+                const double logprob = slot.task->cli_nll
+                    ? token_logprob(ctx, vocab, tok_idx, id)
+                    : 0.0;
 
                 slot.i_batch = -1;
 
@@ -3036,7 +3075,10 @@ private:
                 result.text_to_send = common_token_to_piece(ctx, result.tok, accept_special_token(slot, result.tok));
                 result.prob         = 1.0f; // TODO: set it here instead of doing inside populate_token_probs
 
-                if (slot.task->params.sampling.n_probs > 0) {
+                if (slot.task->cli_nll) {
+                    result.logprob = logprob;
+                    result.prob = std::exp(result.logprob);
+                } else if (slot.task->params.sampling.n_probs > 0) {
                     populate_token_probs(slot, result, slot.task->params.post_sampling_probs, params_base.special, tok_idx);
                 }
 

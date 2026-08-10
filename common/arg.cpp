@@ -1336,6 +1336,20 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ).set_examples({LLAMA_EXAMPLE_CLI}));
     add_opt(common_arg(
+        {"--nll-output"}, "FNAME",
+        "save token logprobs and NLL drift to CSV",
+        [](common_params & params, const std::string & value) {
+            params.nll_output = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI}));
+    add_opt(common_arg(
+        {"--nll-reference"}, "FNAME",
+        "replay reference tokens from an NLL CSV file",
+        [](common_params & params, const std::string & value) {
+            params.nll_reference = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_CLI}));
+    add_opt(common_arg(
         {"--swa-full"},
         string_format("use full-size SWA cache (default: %s)\n"
             "[(more info)](https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)", params.swa_full ? "true" : "false"),

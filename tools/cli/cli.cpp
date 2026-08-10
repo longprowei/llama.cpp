@@ -7,7 +7,10 @@
 #include "server-task.h"
 
 #include <atomic>
+#include <cmath>
 #include <fstream>
+#include <iomanip>
+#include <sstream>
 #include <thread>
 #include <signal.h>
 
@@ -47,12 +50,21 @@ static void signal_handler(int) {
 }
 #endif
 
+struct cli_nll_token {
+    llama_token token;
+    double logprob;
+};
+
 struct cli_context {
     server_context ctx_server;
     json messages = json::array();
     std::vector<raw_buffer> input_files;
     task_params defaults;
     bool verbose_prompt;
+    bool nll_enabled = false;
+    std::string nll_output;
+    std::vector<cli_nll_token> nll_reference;
+    std::vector<cli_nll_token> nll_result;
 
     // thread for showing "loading" animation
     std::atomic<bool> loading_show;
@@ -71,7 +83,168 @@ struct cli_context {
         verbose_prompt = params.verbose_prompt;
     }
 
+    bool init_nll(const common_params & params) {
+        if (params.nll_output.empty() && params.nll_reference.empty()) {
+            return true;
+        }
+
+        if (params.nll_output.empty()) {
+            console::error("--nll-reference requires --nll-output\n");
+            return false;
+        }
+
+        if (!params.single_turn) {
+            console::error("NLL evaluation requires --single-turn\n");
+            return false;
+        }
+
+        nll_enabled = true;
+        nll_output = params.nll_output;
+        defaults.sampling.n_probs = 1;
+        defaults.post_sampling_probs = false;
+        defaults.speculative.n_max = 0;
+
+        if (params.nll_reference.empty()) {
+            return true;
+        }
+
+        std::ifstream file(params.nll_reference);
+        if (!file) {
+            console::error("failed to open NLL reference file: %s\n", params.nll_reference.c_str());
+            return false;
+        }
+
+        std::string line;
+        if (!std::getline(file, line) || line.rfind("token_index,token_id,probability,logprob", 0) != 0) {
+            console::error("invalid NLL reference file: %s\n", params.nll_reference.c_str());
+            return false;
+        }
+
+        int line_number = 1;
+        while (std::getline(file, line)) {
+            line_number++;
+            if (line.empty()) {
+                continue;
+            }
+
+            std::stringstream row(line);
+            std::string index_str;
+            std::string token_str;
+            std::string probability_str;
+            std::string logprob_str;
+
+            if (!std::getline(row, index_str, ',') ||
+                !std::getline(row, token_str, ',') ||
+                !std::getline(row, probability_str, ',') ||
+                !std::getline(row, logprob_str, ',')) {
+                console::error("invalid NLL reference row %d\n", line_number);
+                return false;
+            }
+
+            try {
+                const size_t index = std::stoul(index_str);
+                if (index != nll_reference.size()) {
+                    console::error("unexpected token index in NLL reference row %d\n", line_number);
+                    return false;
+                }
+
+                nll_reference.push_back({
+                    (llama_token) std::stoi(token_str),
+                    std::stod(logprob_str),
+                });
+            } catch (const std::exception &) {
+                console::error("invalid number in NLL reference row %d\n", line_number);
+                return false;
+            }
+        }
+
+        if (nll_reference.empty()) {
+            console::error("NLL reference file has no tokens\n");
+            return false;
+        }
+
+        defaults.n_predict = (int32_t) nll_reference.size();
+        return true;
+    }
+
+    bool write_nll_output() const {
+        if (!nll_enabled) {
+            return true;
+        }
+
+        if (nll_result.empty()) {
+            console::error("no NLL tokens were recorded\n");
+            return false;
+        }
+
+        if (!nll_reference.empty() && nll_result.size() != nll_reference.size()) {
+            console::error("NLL replay produced %zu of %zu reference tokens\n",
+                    nll_result.size(), nll_reference.size());
+            return false;
+        }
+
+        std::ofstream file(nll_output);
+        if (!file) {
+            console::error("failed to open NLL output file: %s\n", nll_output.c_str());
+            return false;
+        }
+
+        file << "token_index,token_id,probability,logprob,nll,reference_probability,reference_logprob,reference_nll,nll_drift\n";
+        file << std::setprecision(17);
+
+        double nll_sum = 0.0;
+        double reference_nll_sum = 0.0;
+        double drift_sum = 0.0;
+        double abs_drift_sum = 0.0;
+        double max_abs_drift = 0.0;
+
+        for (size_t i = 0; i < nll_result.size(); ++i) {
+            const auto & current = nll_result[i];
+            const auto & reference = nll_reference.empty() ? current : nll_reference[i];
+
+            if (current.token != reference.token) {
+                console::error("NLL token mismatch at index %zu\n", i);
+                return false;
+            }
+
+            const double probability = std::exp(current.logprob);
+            const double reference_probability = std::exp(reference.logprob);
+            const double nll = -current.logprob;
+            const double reference_nll = -reference.logprob;
+            const double drift = nll - reference_nll;
+
+            file << i << ','
+                 << current.token << ','
+                 << probability << ','
+                 << current.logprob << ','
+                 << nll << ','
+                 << reference_probability << ','
+                 << reference.logprob << ','
+                 << reference_nll << ','
+                 << drift << '\n';
+
+            nll_sum += nll;
+            reference_nll_sum += reference_nll;
+            drift_sum += drift;
+            abs_drift_sum += std::abs(drift);
+            max_abs_drift = std::max(max_abs_drift, std::abs(drift));
+        }
+
+        const double count = nll_result.size();
+        console::error("NLL summary: tokens = %zu, mean NLL = %.6f, reference NLL = %.6f, "
+                       "mean drift = %.6f, mean abs drift = %.6f, max abs drift = %.6f\n",
+                nll_result.size(),
+                nll_sum / count,
+                reference_nll_sum / count,
+                drift_sum / count,
+                abs_drift_sum / count,
+                max_abs_drift);
+
+        return true;
+    }
+
     std::string generate_completion(result_timings & out_timings) {
+        nll_result.clear();
         server_response_reader rd = ctx_server.get_response_reader();
         auto chat_params = format_chat();
         {
@@ -83,6 +256,11 @@ struct cli_context {
             task.cli_prompt = chat_params.prompt; // copy
             task.cli_files  = input_files;        // copy
             task.cli        = true;
+            task.cli_nll     = nll_enabled;
+            task.cli_nll_tokens.reserve(nll_reference.size());
+            for (const auto & reference : nll_reference) {
+                task.cli_nll_tokens.push_back(reference.token);
+            }
 
             // chat template settings
             task.params.chat_parser_params = common_chat_parser_params(chat_params);
@@ -149,6 +327,12 @@ struct cli_context {
             auto res_final = dynamic_cast<server_task_result_cmpl_final *>(result.get());
             if (res_final) {
                 out_timings = std::move(res_final->timings);
+                if (nll_enabled) {
+                    nll_result.reserve(res_final->probs_output.size());
+                    for (const auto & token : res_final->probs_output) {
+                        nll_result.push_back({token.tok, token.logprob});
+                    }
+                }
                 break;
             }
             result = rd.next(should_stop);
@@ -224,6 +408,10 @@ int main(int argc, char ** argv) {
 
     console::set_display(DISPLAY_TYPE_RESET);
 
+    if (!ctx_cli.init_nll(params)) {
+        return 1;
+    }
+
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
     struct sigaction sigint_action;
     sigint_action.sa_handler = signal_handler;
@@ -290,6 +478,8 @@ int main(int argc, char ** argv) {
         console::log("  /audio <file>       add an audio file\n");
     }
     console::log("\n");
+
+    int result_code = 0;
 
     // interactive loop
     std::string cur_msg;
@@ -404,6 +594,10 @@ int main(int argc, char ** argv) {
         });
         console::log("\n");
 
+        if (!ctx_cli.write_nll_output()) {
+            result_code = 1;
+        }
+
         if (params.show_timings) {
             console::set_display(DISPLAY_TYPE_INFO);
             console::log("\n");
@@ -426,5 +620,5 @@ int main(int argc, char ** argv) {
     common_log_set_verbosity_thold(LOG_LEVEL_INFO);
     llama_memory_breakdown_print(ctx_cli.ctx_server.get_llama_context());
 
-    return 0;
+    return result_code;
 }

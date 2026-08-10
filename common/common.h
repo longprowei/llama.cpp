@@ -382,6 +382,8 @@ struct common_params {
     bool    h2o_eviction          = false; // enable heavy-hitter policy
     int32_t h2o_keep_start        =   0; // keep first N prompt tokens in heavy-hitter policy 
     float   h2o_recent_ratio      = 0.50f; // keep recent tokens ratio
+    std::string nll_output        =    ""; // NLL output file
+    std::string nll_reference     =    ""; // NLL reference file
 
     // offload params
     std::vector<ggml_backend_dev_t> devices; // devices to use for offloading
