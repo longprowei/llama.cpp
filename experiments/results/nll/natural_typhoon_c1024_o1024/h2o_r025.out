@@ -1,0 +1,45 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = 2003 Pacific typhoon season = 
+ 
+ The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis exhibiting the development of 31 tropical depressions , of which 21 became named storms ; of those , 14 became typhoons . Though every month with the exception of February and March featured tropical activity , most storms developed from May through October . During the season , tropical cyclones affected the Philippines , Japan , China , the Korean Peninsula ... (truncated)
+
+The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis, with 31 tropical depressions, 21 named storms, and 14 typhoons. The season ran year-round, with the first storm, Yanyan, developing west of the Marshall Islands on January 15. The season was marked by several significant storms, including Typhoon Kujira, which became one of the longest-lasting Pacific typhoons in history and attained climatological records for its unusually early impacts. Typhoon Imbudo caused several deaths and extensive damage across the Philippines and China, while Typhoon Maemi became one of the costliest typhoons in recorded history after striking South Korea. The season closed with the dissipation of a tropical depression east of the Philippines on December 27.
+
+The scope of this article is limited to the Pacific Ocean, north of the equator and west of the International Date Line. Storms that form east of the date line and north of the equator are called hurricanes; see 2003 Pacific hurricane season. Tropical Storms formed in the entire west Pacific basin are assigned a name by the Tokyo Typhoon Center. Tropical depressions in this basin monitored by the Joint Typhoon Warning Center (JTWC) have the "W" suffix added to their number. Tropical depressions that enter or form in the Philippine area of responsibility are assigned a name by the Philippine Atmospheric, Geophysical and Astronomical Services Administration or PAGASA.
+
+The 2003 Pacific typhoon season was forecasted by several groups, including the Tropical Storm Risk (TSR) Consortium and the City University of Hong Kong. The TSR Consortium issued an extended range forecast on March 5, 2003, noting the likelihood of near-average tropical cyclone activity as a result of projected neutral sea surface temperatures. The forecast indicated the potential for 26-27 tropical storms, compared to the 10- and 30-year average of 27.8 and 26.3 storms, respectively. The group raised their forecast for tropical storms to 26.7 in April, indicating a slightly above-average season. However, fluctuations in sea surface temperatures, particularly those in the Central Pacific, caused the group to revise their predictions downward and indicated the probability for a slightly below-average typhoon season in their June forecast. A rise in sea surface temperatures in the following months prompted the forecasting group to once again raise their forecasts to indicate a near-average season in their final August forecast update, which predicted 27 tropical storms.
+
+The City University of Hong Kong issued a seasonal projection on April 24, 2003, indicating the likelihood of a normal or below-normal season with 29 total tropical cyclones, 26 tropical storms, and 16 typhoons. The group revised their forecasts on June 24, 2003, indicating a slight increase of total tropical cyclones to 30. The group was accurate in their forecasts for the entirety of the Northwest Pacific, though their specialized forecasts for the South China Sea were substantially off. Overall, the 2003 Pacific typhoon season was a significant event, with several major storms affecting the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was marked by a slightly below-average number of tropical cyclones, but several storms had a significant impact on the region. 
+
+The most intense tropical cyclone of the season was Typhoon Maemi, which had a minimum barometric pressure of 910 mbar (hPa; 26.87 inHg). The costliest typhoon of the season was also Typhoon Maemi, which caused significant damage and loss of life in South Korea. The season was also marked by the development of several long-lived typhoons, including Typhoon Kujira, which became one of the longest-lasting Pacific typhoons in history. 
+
+In summary, the 2003 Pacific typhoon season was a significant event, with several major storms affecting the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was marked by a slightly below-average number of tropical cyclones, but several storms had a significant impact on the region. The most intense tropical cyclone of the season was Typhoon Maemi, which had a minimum barometric pressure of 910 mbar (hPa; 26.87 inHg). The costliest typhoon of the season was also Typhoon Maemi, which caused significant damage and loss of life in South Korea. 
+
+The season was forecasted by several groups, including the Tropical Storm Risk (TSR) Consortium and the City University of Hong Kong. The TSR Consortium issued an extended range forecast on March 5, 2003, noting the likelihood of near-average tropical cyclone activity as a result of projected neutral sea surface temperatures. The forecast indicated the potential for 26-27 tropical storms, compared to the 10- and 30-year average of 27.8 and 26
+NLL summary: tokens = 1024, mean NLL = 0.293740, reference NLL = 0.072749, mean drift = 0.220991, mean abs drift = 0.246167, max abs drift = 14.081851
+
+[ Prompt: 148.1 t/s | Generation: 16.8 t/s ]
+
+Exiting...

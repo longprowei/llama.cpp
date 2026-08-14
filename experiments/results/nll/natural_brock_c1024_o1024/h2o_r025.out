@@ -1,0 +1,83 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = Brock Lesnar = 
+ 
+ Brock Edward Lesnar / ˈlɛznər / ( born July 12 , 1977 ) is an American Canadian professional wrestler , mixed martial artist , and former amateur wrestler and professional American football player . He is currently signed to WWE on the Raw brand . He is a four @-@ time WWE ( World Heavyweight ) Champion , a former UFC Heavyweight Champion , and an NCAA Division I Heavyweight Wrestling Champion . He is also a one @-@ time IWGP Heavyweight Champion , making him a five @-@  ... (truncated)
+
+Brock Lesnar is a professional wrestler, mixed martial artist, and former amateur wrestler and professional American football player. He is currently signed to WWE on the Raw brand and has won numerous championships, including four WWE World Heavyweight Championships, a UFC Heavyweight Championship, and an NCAA Division I Heavyweight Wrestling Championship. Lesnar has also won the IWGP Heavyweight Championship and is a five-time world champion in professional wrestling.
+
+Lesnar's amateur wrestling career was successful, with 106 wins and 5 losses at Bismarck State College and the University of Minnesota. He then signed with WWE in 2000 and was assigned to its developmental promotion Ohio Valley Wrestling (OVW), where he was a three-time OVW Southern Tag Team Champion with Shelton Benjamin.
+
+Lesnar made his main roster debut in 2002 and won the WWE Championship on three separate occasions, including a victory over The Rock. He also won the 2002 King of the Ring and the 2003 Royal Rumble, making him the youngest King of the Ring and Royal Rumble winner.
+
+After leaving WWE, Lesnar pursued a career in the National Football League (NFL) but was cut prior to the start of the 2004-05 season. He then returned to professional wrestling and signed with New Japan Pro Wrestling (NJPW), where he won the IWGP Heavyweight Championship in his first match.
+
+In 2006, Lesnar pursued a career in mixed martial arts and signed with Hero's, winning his first fight against Min-Soo Kim in June 2007. He then signed with the Ultimate Fighting Championship (UFC) and won the UFC Heavyweight Championship in November 2008. Lesnar successfully defended his title against Frank Mir but was sidelined due to diverticulitis. He returned at UFC 116 and defeated Shane Carwin to unify the heavyweight championships.
+
+Lesnar's MMA career was marked by several successful title defenses, including a victory over Cain Velasquez at UFC 121. However, he was again sidelined due to diverticulitis and underwent surgery. Lesnar returned at UFC 141 in December 2011 but lost to Alistair Overeem and promptly retired from MMA.
+
+Lesnar has been managed by Paul Heyman throughout his professional wrestling career and has headlined numerous pay-per-view events for both WWE and UFC. In 2015, an ESPN.com article referred to Lesnar as "the most accomplished athlete in pro wrestling history." Lesnar has also been a box office sensation in UFC, participating in several of the best-selling pay-per-view events in UFC history, including UFC 100 and UFC 200. 
+
+In April 2012, Lesnar returned to professional wrestling and rejoined WWE after an eight-year hiatus. Two years later, at WrestleMania XXX, Lesnar defeated The Undertaker to end his undefeated streak at the premier annual event. Lesnar has continued to be a dominant force in professional wrestling, headlining numerous pay-per-view events and winning multiple championships. He is widely regarded as one of the greatest professional wrestlers of all time. 
+
+Lesnar's accomplishments in both professional wrestling and mixed martial arts have made him a legendary figure in the sports world. His ability to excel in multiple disciplines has earned him a reputation as one of the most versatile and dominant athletes in history. Lesnar's legacy continues to inspire and influence new generations of athletes and fans alike. 
+
+In conclusion, Brock Lesnar is a highly accomplished professional wrestler, mixed martial artist, and former amateur wrestler and professional American football player. His impressive career has been marked by numerous championships, including four WWE World Heavyweight Championships, a UFC Heavyweight Championship, and an NCAA Division I Heavyweight Wrestling Championship. Lesnar's ability to excel in multiple disciplines has made him a legendary figure in the sports world, and his legacy continues to inspire and influence new generations of athletes and fans alike. 
+
+References:
+
+* Brock Lesnar's Wikipedia page
+* ESPN.com article on Brock Lesnar
+* WWE.com article on Brock Lesnar
+* UFC.com article on Brock Lesnar
+* NJPW.com article on Brock Lesnar
+* IGF.com article on Brock Lesnar
+* Hero's.com article on Brock Lesnar
+* Bismarck State College website
+* University of Minnesota website
+* Ohio Valley Wrestling website
+* New Japan Pro Wrestling website
+* Inoki Genome Federation website
+* Ultimate Fighting Championship website
+* National Football League website
+* Paul Heyman's Wikipedia page
+* The Undertaker's Wikipedia page
+* The Rock's Wikipedia page
+* Kurt Angle's Wikipedia page
+* Shelton Benjamin's Wikipedia page
+* Min-Soo Kim's Wikipedia page
+* Frank Mir's Wikipedia page
+* Heath Herring's Wikipedia page
+* Randy Couture's Wikipedia page
+* Shane Carwin's Wikipedia page
+* Cain Velasquez's Wikipedia page
+* Alistair Overeem's Wikipedia page
+* UFC 100 Wikipedia page
+* UFC 200 Wikipedia page
+* WrestleMania XIX Wikipedia page
+NLL summary: tokens = 1024, mean NLL = 0.392312, reference NLL = 0.129903, mean drift = 0.262408, mean abs drift = 0.289497, max abs drift = 13.616293
+
+[ Prompt: 145.2 t/s | Generation: 16.8 t/s ]
+
+Exiting...

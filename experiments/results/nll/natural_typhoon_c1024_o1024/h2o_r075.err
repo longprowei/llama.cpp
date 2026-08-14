@@ -1,0 +1,1091 @@
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.022 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal4  (5002)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 12713.12 MB
+build: 8138 (2e37921fb) with AppleClang 17.0.0.17000603 for Darwin arm64
+srv    load_model: loading model '../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf'
+common_init_result: fitting params to device memory, for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on
+llama_params_fit_impl: projected to use 4789 MiB of device memory vs. 12123 MiB of free device memory
+llama_params_fit_impl: will leave 7333 >= 1024 MiB of free device memory, no changes needed
+llama_params_fit: successfully fit params to free device memory
+llama_params_fit: fitting params to free memory took 0.19 seconds
+llama_model_load_from_file_impl: using device MTL0 (Apple M1 Pro) (unknown id) - 12123 MiB free
+llama_model_loader: loaded meta data with 33 key-value pairs and 292 tensors from ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Meta Llama 3.1 8B Instruct
+llama_model_loader: - kv   3:                           general.finetune str              = Instruct
+llama_model_loader: - kv   4:                           general.basename str              = Meta-Llama-3.1
+llama_model_loader: - kv   5:                         general.size_label str              = 8B
+llama_model_loader: - kv   6:                            general.license str              = llama3.1
+llama_model_loader: - kv   7:                               general.tags arr[str,6]       = ["facebook", "meta", "pytorch", "llam...
+llama_model_loader: - kv   8:                          general.languages arr[str,8]       = ["en", "de", "fr", "it", "pt", "hi", ...
+llama_model_loader: - kv   9:                          llama.block_count u32              = 32
+llama_model_loader: - kv  10:                       llama.context_length u32              = 131072
+llama_model_loader: - kv  11:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv  12:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv  13:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv  14:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  15:                       llama.rope.freq_base f32              = 500000.000000
+llama_model_loader: - kv  16:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  17:                          general.file_type u32              = 15
+llama_model_loader: - kv  18:                           llama.vocab_size u32              = 128256
+llama_model_loader: - kv  19:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv  20:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  21:                         tokenizer.ggml.pre str              = llama-bpe
+llama_model_loader: - kv  22:                      tokenizer.ggml.tokens arr[str,128256]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  23:                  tokenizer.ggml.token_type arr[i32,128256]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  24:                      tokenizer.ggml.merges arr[str,280147]  = ["Ġ Ġ", "Ġ ĠĠĠ", "ĠĠ ĠĠ", "...
+llama_model_loader: - kv  25:                tokenizer.ggml.bos_token_id u32              = 128000
+llama_model_loader: - kv  26:                tokenizer.ggml.eos_token_id u32              = 128009
+llama_model_loader: - kv  27:                    tokenizer.chat_template str              = {{- bos_token }}\n{%- if custom_tools ...
+llama_model_loader: - kv  28:               general.quantization_version u32              = 2
+llama_model_loader: - kv  29:                      quantize.imatrix.file str              = /models_out/Meta-Llama-3.1-8B-Instruc...
+llama_model_loader: - kv  30:                   quantize.imatrix.dataset str              = /training_dir/calibration_datav3.txt
+llama_model_loader: - kv  31:             quantize.imatrix.entries_count i32              = 224
+llama_model_loader: - kv  32:              quantize.imatrix.chunks_count i32              = 125
+llama_model_loader: - type  f32:   66 tensors
+llama_model_loader: - type q4_K:  193 tensors
+llama_model_loader: - type q6_K:   33 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 4.58 GiB (4.89 BPW) 
+load: 0 unused tokens
+load: printing all EOG tokens:
+load:   - 128001 ('<|end_of_text|>')
+load:   - 128008 ('<|eom_id|>')
+load:   - 128009 ('<|eot_id|>')
+load: special tokens cache size = 256
+load: token to piece cache size = 0.7999 MB
+print_info: arch                  = llama
+print_info: vocab_only            = 0
+print_info: no_alloc              = 0
+print_info: n_ctx_train           = 131072
+print_info: n_embd                = 4096
+print_info: n_embd_inp            = 4096
+print_info: n_layer               = 32
+print_info: n_head                = 32
+print_info: n_head_kv             = 8
+print_info: n_rot                 = 128
+print_info: n_swa                 = 0
+print_info: is_swa_any            = 0
+print_info: n_embd_head_k         = 128
+print_info: n_embd_head_v         = 128
+print_info: n_gqa                 = 4
+print_info: n_embd_k_gqa          = 1024
+print_info: n_embd_v_gqa          = 1024
+print_info: f_norm_eps            = 0.0e+00
+print_info: f_norm_rms_eps        = 1.0e-05
+print_info: f_clamp_kqv           = 0.0e+00
+print_info: f_max_alibi_bias      = 0.0e+00
+print_info: f_logit_scale         = 0.0e+00
+print_info: f_attn_scale          = 0.0e+00
+print_info: n_ff                  = 14336
+print_info: n_expert              = 0
+print_info: n_expert_used         = 0
+print_info: n_expert_groups       = 0
+print_info: n_group_used          = 0
+print_info: causal attn           = 1
+print_info: pooling type          = 0
+print_info: rope type             = 0
+print_info: rope scaling          = linear
+print_info: freq_base_train       = 500000.0
+print_info: freq_scale_train      = 1
+print_info: n_ctx_orig_yarn       = 131072
+print_info: rope_yarn_log_mul     = 0.0000
+print_info: rope_finetuned        = unknown
+print_info: model type            = 8B
+print_info: model params          = 8.03 B
+print_info: general.name          = Meta Llama 3.1 8B Instruct
+print_info: vocab type            = BPE
+print_info: n_vocab               = 128256
+print_info: n_merges              = 280147
+print_info: BOS token             = 128000 '<|begin_of_text|>'
+print_info: EOS token             = 128009 '<|eot_id|>'
+print_info: EOT token             = 128001 '<|end_of_text|>'
+print_info: EOM token             = 128008 '<|eom_id|>'
+print_info: LF token              = 198 'Ċ'
+print_info: EOG token             = 128001 '<|end_of_text|>'
+print_info: EOG token             = 128008 '<|eom_id|>'
+print_info: EOG token             = 128009 '<|eot_id|>'
+print_info: max token length      = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true, direct_io = false)
+load_tensors: offloading output layer to GPU
+load_tensors: offloading 31 repeating layers to GPU
+load_tensors: offloaded 33/33 layers to GPU
+load_tensors:   CPU_Mapped model buffer size =   281.81 MiB
+load_tensors:  MTL0_Mapped model buffer size =  4685.30 MiB
+........................................................................................
+common_init_result: added <|end_of_text|> logit bias = -inf
+common_init_result: added <|eom_id|> logit bias = -inf
+common_init_result: added <|eot_id|> logit bias = -inf
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 1
+llama_context: n_ctx         = 1024
+llama_context: n_ctx_seq     = 1024
+llama_context: n_batch       = 1024
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = disabled
+llama_context: kv_unified    = false
+llama_context: freq_base     = 500000.0
+llama_context: freq_scale    = 1
+llama_context: n_ctx_seq (1024) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M1 Pro
+ggml_metal_init: picking default device: Apple M1 Pro
+ggml_metal_init: use fusion         = true
+ggml_metal_init: use concurrency    = true
+ggml_metal_init: use graph optimize = true
+llama_context:        CPU  output buffer size =     0.49 MiB
+llama_kv_cache:       MTL0 KV buffer size =   128.00 MiB
+llama_kv_cache: size =  128.00 MiB (  1024 cells,  32 layers,  1/1 seqs), K (f16):   64.00 MiB, V (f16):   64.00 MiB
+sched_reserve: reserving ...
+sched_reserve:       MTL0 compute buffer size =   258.50 MiB
+sched_reserve:        CPU compute buffer size =    22.01 MiB
+sched_reserve: graph nodes  = 1158
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 35.34 ms, sched copies = 1
+common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+srv    load_model: initializing slots, n_slots = 1
+no implementations specified for speculative decoding
+slot   load_model: id  0 | task -1 | speculative decoding context not initialized
+slot   load_model: id  0 | task -1 | new slot, n_ctx = 1024
+srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+srv    load_model: use `--cache-ram 0` to disable the prompt cache
+srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+init: chat template, example_format: '<|start_header_id|>system<|end_header_id|>
+
+Environment: ipython
+Tools: 
+
+Cutting Knowledge Date: December 2023
+Today Date: 14 Aug 2026
+
+You are a helpful assistant<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Hello<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+Hi there<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+How are you?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+'
+srv          init: init: chat template, thinking = 0
+srv  update_slots: all slots are idle
+slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+slot launch_slot_: id  0 | task -1 | sampler chain: logits -> logit-bias -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+slot update_slots: id  0 | task 0 | new prompt, n_ctx_slot = 1024, n_keep = 0, task.n_tokens = 885
+slot update_slots: id  0 | task 0 | n_tokens = 0, memory_seq_rm [0, end)
+slot update_slots: id  0 | task 0 | prompt processing progress, n_tokens = 885, batch.n_tokens = 885, progress = 1.000000
+slot update_slots: id  0 | task 0 | prompt done, n_tokens = 885, batch.n_tokens = 885
+slot init_sampler: id  0 | task 0 | init sampler, took 0.10 ms, tokens: text = 885, total = 885
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [36,37), score = 4.905770
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [146,147), score = 6.126515
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [140,141), score = 6.146700
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [196,197), score = 6.462231
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [143,144), score = 6.525777
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [27,28), score = 6.755980
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [255,256), score = 6.833660
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [138,139), score = 6.853827
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [141,142), score = 6.958138
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [33,34), score = 6.972034
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [186,187), score = 7.046474
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [238,239), score = 7.090524
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [14,15), score = 7.133120
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [254,255), score = 7.310300
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [250,251), score = 7.584378
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [134,135), score = 7.727914
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [242,243), score = 7.816935
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [251,252), score = 7.847265
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.945168
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [206,207), score = 7.880469
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [250,251), score = 7.971653
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [162,163), score = 8.069945
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [243,244), score = 8.254826
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [7,8), score = 8.410761
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.442801
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [214,215), score = 8.539261
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [192,193), score = 8.622843
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [128,129), score = 8.629256
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [12,13), score = 8.688373
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [225,226), score = 8.689528
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [238,239), score = 8.700498
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [239,240), score = 8.720241
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [253,254), score = 8.813812
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.814440
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.335021
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.987951
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.081566
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.550021
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.804891
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [239,240), score = 8.856511
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [130,131), score = 8.901747
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.909629
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [236,237), score = 8.938153
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [171,172), score = 8.964953
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.550316
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [240,241), score = 9.010331
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [241,242), score = 9.085555
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [206,207), score = 9.149731
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [21,22), score = 9.188088
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.812987
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.877811
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [236,237), score = 9.212893
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [232,233), score = 9.314383
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.062487
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.319197
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.032944
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.199176
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.496929
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.169916
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.130328
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.186427
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 3.914085
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [131,132), score = 9.356848
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [234,235), score = 9.375470
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [253,254), score = 9.493663
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [126,127), score = 9.519156
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [249,250), score = 9.530886
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.646177
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.958906
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [206,207), score = 9.538975
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.488117
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.360353
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.792899
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [83,84), score = 9.563717
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [246,247), score = 9.598598
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [217,218), score = 9.616240
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.715791
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [241,242), score = 9.646424
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.814025
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [242,243), score = 9.898323
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.093871
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.002072
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [2,3), score = 9.923243
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [252,253), score = 9.928056
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [253,254), score = 10.042336
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [126,127), score = 10.132314
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.071517
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [250,251), score = 10.217980
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [9,10), score = 10.220073
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [209,210), score = 10.264977
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [214,215), score = 10.340416
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [247,248), score = 10.423738
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [61,62), score = 10.500655
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [183,184), score = 10.545095
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [194,195), score = 10.613832
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [248,249), score = 10.688480
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [212,213), score = 10.781615
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [81,82), score = 10.893023
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.132638
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [82,83), score = 10.915572
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [110,111), score = 10.935884
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [13,14), score = 10.971270
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [225,226), score = 10.998241
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [163,164), score = 11.019664
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.547599
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [217,218), score = 11.035849
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.779161
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [196,197), score = 11.124203
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [140,141), score = 11.129667
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [10,11), score = 11.132164
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [10,11), score = 11.139402
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [15,16), score = 11.229536
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [15,16), score = 11.242854
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [201,202), score = 11.246068
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [126,127), score = 11.256761
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.126295
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.284714
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [144,145), score = 11.323647
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [93,94), score = 11.327709
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.328028
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.112973
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.507080
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.558242
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.719288
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [207,208), score = 11.397194
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [87,88), score = 11.405528
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [115,116), score = 11.425817
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [240,241), score = 11.483665
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [114,115), score = 11.518666
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.351369
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.199684
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [126,127), score = 11.537633
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.285658
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [96,97), score = 11.570374
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [162,163), score = 11.603767
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [103,104), score = 11.612363
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [87,88), score = 11.631386
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [93,94), score = 11.653356
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [234,235), score = 11.718013
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [109,110), score = 11.740207
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.235207
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.204886
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [148,149), score = 11.751584
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.536203
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [196,197), score = 11.758313
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [221,222), score = 11.824981
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [18,19), score = 11.873998
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [157,158), score = 11.923552
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.271815
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [238,239), score = 11.962588
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [197,198), score = 11.976625
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [4,5), score = 11.989874
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [225,226), score = 12.007073
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.158132
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [136,137), score = 12.238141
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [182,183), score = 12.276802
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [169,170), score = 12.298660
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [55,56), score = 12.321291
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [103,104), score = 12.366051
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [70,71), score = 12.431915
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [176,177), score = 12.445499
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.098832
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [156,157), score = 12.478111
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [103,104), score = 12.482460
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.603376
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.969631
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [84,85), score = 12.522223
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.997426
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [175,176), score = 12.548137
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.302888
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [137,138), score = 12.564366
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [180,181), score = 12.570602
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.098761
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [194,195), score = 12.586226
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.939317
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [7,8), score = 12.617992
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.526820
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [148,149), score = 12.637106
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.366557
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.469667
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [60,61), score = 12.643657
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.340507
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.887716
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.676456
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.490437
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [179,180), score = 12.705457
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.942313
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.081866
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.156750
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.544596
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [227,228), score = 12.847059
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.849362
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.666318
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.414681
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.613736
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [170,171), score = 13.027742
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.438540
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.322897
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [69,70), score = 13.036026
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [241,242), score = 13.039083
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.722449
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.913571
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [162,163), score = 13.097163
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.132118
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.140047
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [138,139), score = 13.125307
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [13,14), score = 13.129151
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [209,210), score = 13.275674
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.897274
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.380600
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.123716
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.712745
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.832237
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.699243
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.404541
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.507597
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.766356
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.346874
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.366949
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [148,149), score = 13.295825
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [200,201), score = 13.355696
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.480540
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.100871
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.567383
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.655686
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.874969
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.473914
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.939104
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.586843
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.578384
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.477468
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.646842
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.724775
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [176,177), score = 13.409114
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [195,196), score = 13.506443
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.459953
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [227,228), score = 13.530231
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [149,150), score = 13.570482
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [121,122), score = 13.573231
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [216,217), score = 13.606756
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.782839
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [157,158), score = 13.610457
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [244,245), score = 13.652593
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [220,221), score = 13.712566
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [124,125), score = 13.735440
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [233,234), score = 13.872409
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [169,170), score = 13.881717
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [2,3), score = 13.897172
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [108,109), score = 13.907140
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [236,237), score = 14.017338
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [225,226), score = 14.044767
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [229,230), score = 14.078959
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [120,121), score = 14.088944
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [87,88), score = 14.157062
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.462588
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [146,147), score = 14.170832
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.473833
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [186,187), score = 14.219067
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.300266
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.839309
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.168927
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.585046
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [169,170), score = 14.241089
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.064324
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [58,59), score = 14.286574
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.353915
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [113,114), score = 14.338470
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [144,145), score = 14.368140
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [168,169), score = 14.468129
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [75,76), score = 14.532498
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [187,188), score = 14.567616
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [7,8), score = 14.581330
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [50,51), score = 14.623713
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [68,69), score = 14.699636
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.888623
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [149,150), score = 14.752316
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [69,70), score = 14.754232
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [169,170), score = 14.801939
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [56,57), score = 14.818162
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [152,153), score = 14.850671
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [181,182), score = 14.868308
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [208,209), score = 14.879077
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [200,201), score = 14.934689
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [16,17), score = 14.937635
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.551449
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.754283
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.116419
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [175,176), score = 14.987582
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [204,205), score = 15.002325
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.790033
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.503046
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [149,150), score = 15.018661
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [112,113), score = 15.088489
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [137,138), score = 15.099575
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.730346
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.679932
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [157,158), score = 15.167768
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [113,114), score = 15.176713
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [125,126), score = 15.229498
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [159,160), score = 15.245712
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [68,69), score = 15.272689
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.496271
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.712510
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.216248
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [144,145), score = 15.288321
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [197,198), score = 15.295346
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [190,191), score = 15.308274
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [11,12), score = 15.373504
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.046817
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [220,221), score = 15.380073
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.288129
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [61,62), score = 15.474678
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [179,180), score = 15.485728
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [224,225), score = 15.494624
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [218,219), score = 15.516740
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.518575
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.990666
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [145,146), score = 15.525967
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [71,72), score = 15.557851
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [104,105), score = 15.561298
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.218708
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [147,148), score = 15.589915
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.756996
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.080494
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.072027
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [102,103), score = 15.641772
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [198,199), score = 15.667835
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.588806
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.660707
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [244,245), score = 15.673977
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.066348
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.760793
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [136,137), score = 15.683828
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [141,142), score = 15.698308
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.090222
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.243932
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.609281
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.104084
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.952725
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.475712
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.827763
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.915047
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.830359
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.973101
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [107,108), score = 15.751674
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.037574
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.389423
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [122,123), score = 15.760062
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.305218
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.009809
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [45,46), score = 15.809998
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [94,95), score = 15.811166
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [184,185), score = 15.869514
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [176,177), score = 15.901354
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [156,157), score = 15.939473
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.824835
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.385359
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [248,249), score = 15.988346
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.341733
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.700576
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.751579
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.433469
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.517263
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.442292
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [100,101), score = 16.020752
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.067286
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.514780
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.531053
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.225528
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.825445
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [182,183), score = 16.065237
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [110,111), score = 16.098053
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.118417
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.227875
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.419635
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [58,59), score = 16.209738
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.527850
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [216,217), score = 16.215204
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [251,252), score = 16.233402
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [157,158), score = 16.302870
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.739742
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.968240
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.374899
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [134,135), score = 16.319654
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.084612
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.064868
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.911357
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.882348
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.485958
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.247653
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.993093
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.148247
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [96,97), score = 16.367348
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.982322
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [113,114), score = 16.409134
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.036464
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [205,206), score = 16.431551
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.549589
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [179,180), score = 16.439350
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [160,161), score = 16.476511
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.849755
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.699239
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.776736
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [115,116), score = 16.501692
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.435437
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.115438
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.186300
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.115107
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.853036
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [82,83), score = 16.553919
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.047481
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.033031
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.910121
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.754440
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [145,146), score = 16.599722
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [195,196), score = 16.650484
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [90,91), score = 16.698090
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.468717
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.471440
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.448423
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.164815
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.032486
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.492380
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.811313
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.776726
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.431520
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.515286
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [42,43), score = 16.795935
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.514154
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.964801
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.617782
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.329815
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.632144
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.861825
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.007960
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.436762
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.095896
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.106359
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.606302
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.671155
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.346804
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.797349
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.779653
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.056304
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.610204
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.472732
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.084229
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.909286
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.097221
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [151,152), score = 16.862123
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.786184
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.758492
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.980560
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.825023
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.449925
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.943362
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.546512
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.923433
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.550061
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [192,193), score = 16.882265
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.405081
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.218243
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.507147
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.079432
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [94,95), score = 16.887693
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.616911
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.964766
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.213486
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.966365
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.896358
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.152240
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.099592
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.081967
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.768737
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.695539
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.773551
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.189364
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.478890
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.041982
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [57,58), score = 16.964743
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [118,119), score = 16.979301
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [48,49), score = 17.092316
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.476175
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.080845
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.483166
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.069357
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.014260
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.511433
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.953356
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.700510
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.436571
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.577845
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.185871
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [174,175), score = 17.210264
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.737185
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [199,200), score = 17.237261
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [242,243), score = 17.280827
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.894051
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.858427
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.867915
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.029150
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.677847
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.066875
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.491339
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.571057
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.937428
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [228,229), score = 17.304401
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.875098
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.214177
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.137053
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.615408
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [255,256), score = 17.327732
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.490613
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.023998
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.743335
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.098221
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.894402
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.216657
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [143,144), score = 17.536577
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [240,241), score = 17.548210
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.283418
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.530912
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [232,233), score = 17.632126
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.071486
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.051595
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.135646
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.636141
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.585002
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.332565
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.200426
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.225170
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.597074
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.138661
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.585428
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.021601
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [187,188), score = 17.714529
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.127337
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.622380
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.529560
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.000555
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.814531
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.863072
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.566759
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.562157
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.460960
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.425234
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.654913
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.326241
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.298519
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.802010
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.593130
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.511502
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.874182
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.794906
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.212286
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.987438
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.756890
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.964456
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 3.748122
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.536121
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.655246
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.155975
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.995135
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.226759
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.276111
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.187848
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.155890
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.263524
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.553428
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.423009
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [214,215), score = 17.909613
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.898256
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.150090
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.005546
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.441832
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.640215
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.534877
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.849928
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.668251
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.173594
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.354901
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.538524
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.624415
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.875367
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.279402
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.148826
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.017340
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.110886
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.155339
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.480850
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.192698
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.588260
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.845833
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.417926
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.474956
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.479182
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.720640
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.120767
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.556756
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [178,179), score = 18.058064
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.539416
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.618146
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.088264
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.244273
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.908076
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.053562
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.607961
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.266273
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.446564
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.182428
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.160528
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.889704
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.287012
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.117268
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.992177
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.406950
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.949851
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.004498
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.100775
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.795730
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.099319
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.962035
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.359396
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.174226
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [210,211), score = 18.238125
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [164,165), score = 18.330820
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [238,239), score = 18.391474
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.816070
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [127,128), score = 18.412058
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [84,85), score = 18.458506
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 18.452663
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.848417
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [170,171), score = 18.489220
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [86,87), score = 18.493389
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.954101
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [187,188), score = 18.564905
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [247,248), score = 18.641771
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [71,72), score = 18.655827
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.504856
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.527515
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.007788
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [204,205), score = 18.671717
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.081952
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.183181
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.441458
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.642829
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.187790
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.279420
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.581773
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.330710
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [153,154), score = 18.732668
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.668356
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.244293
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.822638
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.415482
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.779416
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.445140
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [140,141), score = 18.780113
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.830460
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.808683
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.720521
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.522099
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.266676
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.357925
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.630085
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.702833
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.527674
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.219473
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.341688
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [51,52), score = 18.836811
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.456112
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 18.589153
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.116064
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.665844
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [146,147), score = 18.918617
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 18.873758
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.730339
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.609846
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.337324
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.735478
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.742310
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.255203
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.007241
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.024927
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.770261
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.225164
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.546077
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.910037
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.581503
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.465199
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.593316
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.095765
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.244226
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.434402
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.350211
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [190,191), score = 18.968914
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.789117
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.966490
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.559329
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [198,199), score = 19.030745
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.788469
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.733723
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.877478
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [65,66), score = 19.101315
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [215,216), score = 19.106258
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.519590
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.078670
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.329153
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.008843
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.631621
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.977619
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.784051
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 15.022575
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.816552
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [86,87), score = 19.128712
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.411235
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.305924
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.356133
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.944368
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.740300
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.227876
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.249830
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.475837
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.504501
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.653610
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.869352
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.683535
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.018183
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.513593
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.120364
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.249834
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.403315
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.458672
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.419282
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.256690
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.899436
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [103,104), score = 19.265984
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.588828
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.975891
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.660183
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.179169
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.941744
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 17.634933
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.730327
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.708414
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.431931
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.095832
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.885730
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.065350
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.857990
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.945840
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.304019
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.310203
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.218155
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.080748
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.548609
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.394872
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.402606
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.271523
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.143337
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 18.565781
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.294260
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.595586
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.572107
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.264781
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.782294
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.304067
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.379585
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.939021
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.064553
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.852937
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.562989
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.228645
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.039390
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.615285
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [84,85), score = 19.326530
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.379105
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 14.283390
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.045662
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.424804
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.431684
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.892235
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.882936
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.777718
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.292140
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.881284
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.016050
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.199777
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.086233
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.056376
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.255290
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.474957
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.447526
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.078458
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.986458
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [137,138), score = 19.439308
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 18.881609
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [126,127), score = 19.474272
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.540678
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.072083
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [65,66), score = 19.545862
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.773019
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.646675
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.391730
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.458383
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.377735
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.349924
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 18.389280
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.697958
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.253883
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.186819
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.929589
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.379836
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.583738
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.356879
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.838650
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.703294
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.998868
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.084118
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.375429
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [128,129), score = 19.640720
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.267699
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.397184
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.434108
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.150598
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.411640
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.621420
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.311947
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.577995
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.579841
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.644377
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.271322
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.338057
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.216495
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [88,89), score = 19.727451
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 4.614171
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.951462
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.424525
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.394772
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 13.446101
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 16.693193
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.351348
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.952864
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.758168
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.787200
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.373486
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.169208
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [18,19), score = 19.767372
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 12.436677
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 11.142076
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.384454
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.813793
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.863353
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.731759
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.890075
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.693163
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.420669
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.353793
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.642137
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.230660
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.053314
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.298570
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.004185
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.792655
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.525708
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.350365
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.072281
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.810371
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [146,147), score = 19.923325
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.808599
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.921142
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.819874
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.004265
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.993937
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.634138
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 10.027575
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 7.388587
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.523273
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.402172
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.515144
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 6.806441
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.640172
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 8.328319
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 9.750244
+slot update_slots: id  0 | task 0 | h2o eviction, prefix_keep = 1, recent_keep = 766, victim = [256,257), score = 5.407920
+slot print_timing: id  0 | task 0 | 
+prompt eval time =    5967.05 ms /   885 tokens (    6.74 ms per token,   148.31 tokens per second)
+       eval time =   61107.87 ms /  1024 tokens (   59.68 ms per token,    16.76 tokens per second)
+      total time =   67074.92 ms /  1909 tokens
+slot      release: id  0 | task 0 | stop processing: n_tokens = 1023, truncated = 1
+srv  update_slots: all slots are idle
+llama_memory_breakdown_print: | memory breakdown [MiB]  | total   free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M1 Pro) | 12124 = 7051 + (5071 =  4685 +     128 +     258) +           0 |
+llama_memory_breakdown_print: |   - Host                |                  303 =   281 +       0 +      22                |
+ggml_metal_free: deallocating
