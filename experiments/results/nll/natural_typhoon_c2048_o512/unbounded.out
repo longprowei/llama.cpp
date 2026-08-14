@@ -1,0 +1,39 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = 2003 Pacific typhoon season = 
+ 
+ The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis exhibiting the development of 31 tropical depressions , of which 21 became named storms ; of those , 14 became typhoons . Though every month with the exception of February and March featured tropical activity , most storms developed from May through October . During the season , tropical cyclones affected the Philippines , Japan , China , the Korean Peninsula ... (truncated)
+
+The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis, with 31 tropical depressions, 21 named storms, and 14 typhoons. The season ran year-round, with the first storm, Yanyan, developing west of the Marshall Islands on January 15. The season was marked by several significant storms, including Typhoon Kujira, which became one of the longest-lasting Pacific typhoons in history and attained climatological records for its unusually early impacts. Typhoon Imbudo caused several deaths and extensive damage across the Philippines and China, while Typhoon Maemi became one of the costliest typhoons in recorded history after striking South Korea. The season closed with the dissipation of a tropical depression east of the Philippines on December 27.
+
+The season was forecast to be near average, with the Tropical Storm Risk (TSR) Consortium issuing an extended range forecast on March 5, 2003, predicting 26-32 tropical storms. However, fluctuations in sea surface temperatures caused the group to revise their predictions downward, indicating a slightly below average season. The City University of Hong Kong also issued a seasonal projection on April 24, 2003, indicating the likelihood of a normal or below normal season with 29 total tropical cyclones, 26 tropical storms, and 16 typhoons.
+
+The Japan Meteorological Agency (JMA) issued advisories on tropical cyclones west of the International Date Line to the Malay Peninsula, and north of the equator, and the Joint Typhoon Warning Center (JTWC) issued warnings on storms within the basin. The season was marked by above-normal sea surface temperatures in the western equatorial Pacific, including those in the South China Sea, and areas of convection persisted year-round in the lower latitudes, particularly around the Philippines. Atmospheric divergence was also prevalent in the same regions, resulting in enhanced tropical cyclogenesis east of the Philippines in 2003.
+
+The season began with the formation of Tropical Storm Yanyan on January 15, and after its dissipation five days later, no tropical cyclones of at least tropical storm intensity developed over the next two months. This period of inactivity ended with the formation of Typhoon Kujira in mid-April, which was one of the longest-lived Pacific storms on record and was the first typhoon with 1-minute sustained winds of at least 240 km/h (150 mph) in April since Typhoon Isa in 1997.
+NLL summary: tokens = 512, mean NLL = 0.048485, reference NLL = 0.048485, mean drift = 0.000000, mean abs drift = 0.000000, max abs drift = 0.000000
+
+[ Prompt: 213.8 t/s | Generation: 19.3 t/s ]
+
+Exiting...

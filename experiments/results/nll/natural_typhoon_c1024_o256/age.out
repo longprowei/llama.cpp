@@ -1,0 +1,35 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8135-1151f7470
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = 2003 Pacific typhoon season = 
+ 
+ The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis exhibiting the development of 31 tropical depressions , of which 21 became named storms ; of those , 14 became typhoons . Though every month with the exception of February and March featured tropical activity , most storms developed from May through October . During the season , tropical cyclones affected the Philippines , Japan , China , the Korean Peninsula ... (truncated)
+
+The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis, with 31 tropical depressions, 21 named storms, and 14 typhoons. The season ran year-round, with the first storm, Yanyan, developing west of the Marshall Islands on January 15. The season was marked by several significant storms, including Typhoon Kujira, which became one of the longest-lasting Pacific typhoons in history and attained climatological records for its unusually early impacts. Typhoon Imbudo caused several deaths and extensive damage across the Philippines and China, while Typhoon Maemi became one of the costliest typhoons in recorded history after striking South Korea. The season closed with the dissipation of a tropical depression east of the Philippines on December 27.
+
+The scope of this article is limited to the Pacific Ocean, north of the equator and west of the International Date Line. Storms that form east of the date line and north of the equator are called hurricanes; see 2003 Pacific hurricane season. Tropical Storms formed in the entire west Pacific basin are assigned a name by the Tokyo Typhoon Center. Tropical depressions in this basin monitored by the Joint Typhoon Warning Center (JT
+NLL summary: tokens = 256, mean NLL = 0.030116, reference NLL = 0.031821, mean drift = -0.001704, mean abs drift = 0.002205, max abs drift = 0.469767
+
+[ Prompt: 215.2 t/s | Generation: 21.5 t/s ]
+
+Exiting...

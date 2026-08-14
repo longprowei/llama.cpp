@@ -1,0 +1,40 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8135-1151f7470
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = Manila = 
+ 
+ Manila ( / məˈnɪl.ə / ) is the capital city of the Philippines , founded on June 24 , 1571 by Spanish conquistador Miguel López de Legazpi . It is one of the oldest cities in the country and was the seat of power for most of the colonial rules of the Philippines . It is situated on the eastern shore of Manila Bay and contains a multitude of landmarks , some of which date back to the 16th century , such as the Spanish colonial era Walled City of Intramuros . 
+ Manila is the s ... (truncated)
+
+Manila is the capital city of the Philippines, founded on June 24, 1571, by Spanish conquistador Miguel López de Legazpi. It is one of the oldest cities in the country and was the seat of power for most of the colonial rules of the Philippines. Manila is situated on the eastern shore of Manila Bay and contains a multitude of landmarks, some of which date back to the 16th century, such as the Spanish colonial era Walled City of Intramuros.
+
+Manila is the second most populous city in the Philippines after the former capital Quezon City, with a population of 1,780,148 in 2015. Due to its small land area and huge population, Manila is regarded as one of the most densely populated cities in the world, with 42,857 people per square kilometer.
+
+Manila has six representative districts for the lower house of the Philippine Congress. The city is composed of 16 districts, namely: Binondo, Ermita, Intramuros, Malate, Paco, Pandacan, Port Area, Quiapo, Sampaloc, San Andres, San Miguel, San Nicolas, Santa Ana, Santa Cruz, Santa Mesa, and Tondo.
+
+The Kingdom of Tondo once
+NLL summary: tokens = 256, mean NLL = 0.015482, reference NLL = 0.015502, mean drift = -0.000020, mean abs drift = 0.000780, max abs drift = 0.065132
+
+[ Prompt: 214.6 t/s | Generation: 21.5 t/s ]
+
+Exiting...

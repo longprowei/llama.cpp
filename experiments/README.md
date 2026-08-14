@@ -4,7 +4,7 @@ This folder contains the scripts, logs, and result files used for the KV-Cache m
 
 ## Included results
 
-The main experimental results used in the report are already committed in this folder. In most cases, it is not necessary to rerun the experiments in order to inspect the project outcomes. If you only want to review the reported behaviour, you can read the saved logs and result summaries directly.
+The experimental results used in the report are stored in this folder. In most cases, it is not necessary to rerun the experiments to inspect the project outcomes. Previous results are stored under `experiments/legacy/`, and the current evaluation results are saved under `experiments/results/`.
 
 ## External files not included
 
@@ -29,7 +29,7 @@ https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF
 
 ## Prompt data used
 
-The prompt files used by the main experiment commands in this folder are already committed under `experiments/prompts/`.
+The prompt files used by the main experiment commands in this folder are stored under `experiments/prompts/`.
 
 If you only want to inspect the saved results or rerun the listed commands directly, you do not need to regenerate these prompt files.
 
@@ -44,529 +44,58 @@ To rerun the experiments at a high level:
 
    On macOS, the commands used in this project were:
 
-   ```bash
-   cmake -B build
-   cmake --build build --config Release -j
-   ```
+       cmake -B build
+       cmake --build build --config Release -j 2
 
 2. Download the required GGUF model file and place it in the sibling `models/` folder described above.
 3. If needed, regenerate the WikiText-based prompt files using the downloaded raw dataset.
-4. Run the commands in this folder to regenerate logs and outputs.
+4. Run the evaluation scripts listed below to regenerate logs and outputs.
 
-Note that runtime throughput and memory measurements may vary across hardware platforms, but the saved results in this folder correspond to the runs used in the submitted report.
+Note that runtime throughput and memory measurements may vary across hardware platforms.
 
 ## Notes
 
-- The committed outputs in this folder are the primary reference for the report results.
+- The previous outputs are stored under `experiments/legacy/`.
 - Reproducing the exact numbers may depend on using similar hardware, model quantisation, and runtime settings.
 
 ## Experiment Commands
 
 ### Prepare test prompt files
-1034 tokens
-`sed -n '1,17p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_1k.txt`
 
-3817 tokens
-`sed -n '1,75p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_3_8k.txt`
+#### Family A: 2003 Pacific typhoon season
 
-3935 tokens
-`sed -n '1,79p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_3_9k.txt`
+    sed -n '1497,1506p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_typhoon_c1024.txt
+    sed -n '1497,1514p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_typhoon_c2048.txt
+    sed -n '1497,1534p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_typhoon_c4096.txt
 
-4006 tokens
-`sed -n '1,80p' wikitext-2-raw/wiki.test.raw > experiments/prompts/wiki_4k.txt`
+#### Family B: Brock Lesnar
 
-3992 tokens
-wiki_3_9k_needle_start.txt, wiki_3_9k_needle_middle.txt, wiki_3_9k_needle_end.txt
+    sed -n '1834,1839p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_brock_c1024.txt
+    sed -n '1834,1860p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_brock_c2048.txt
+    sed -n '1834,1868p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_brock_c4096.txt
 
+#### Family C: Manila
 
-### Commands for baseline test and some results
-#### Unbounded Baseline With llama-cli - 3.8k tokens prompt
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_8k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/unbounded_3_8k_o512.txt
+    sed -n '2992,3001p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_manila_c1024.txt
+    sed -n '2992,3009p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_manila_c2048.txt
+    sed -n '2992,3024p' wikitext-2-raw/wiki.test.raw > experiments/prompts/natural_manila_c4096.txt
 
-#### Unbounded Baseline With llama-cli - 3.9k tokens prompt
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/unbounded_3_9k_o512.txt
+### Count prompt tokens
 
-#### Unbounded Baseline With llama-cli - 4k tokens prompt
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_4k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/unbounded_4k_o512.txt
-
-#### Unbounded Baseline With llama-cli - 1k tokens prompt
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_1k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/unbounded_1k_o512.txt
-
-
-#### Sliding Window Baseline With llama-cli - 3.8k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_8k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/sliding_win_3_8k_o512.txt
-
-#### Sliding Window Baseline With llama-cli - 3.9k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/sliding_win_3_9k_o512.txt
-
-#### Sliding Window Baseline With llama-cli - 4k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_4k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/sliding_win_4k_o512.txt
-
-#### Sliding Window Baseline With llama-cli - 1k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_1k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/sliding_win_1k_o512.txt
-
-
-#### Age-based policy llama-cli - 3.8k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_8k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/age_based_3_8k_o512.txt
-
-#### Age-based policy llama-cli - 3.9k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/age_based_3_9k_o512.txt
-
-#### Age-based policy llama-cli - 4k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_4k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/age_based_4k_o512.txt
-
-#### Age-based policy llama-cli - 1k tokens
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_1k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/age_based_1k_o512.txt
-
-#### Age-based policy llama-cli - 3.9k tokens but use 32 tokens blocks
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        --age-block-size 32 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/age_based_3_9k_o512_b32.txt
-
-#### Age-based policy llama-cli - 3.9k tokens but use 128 tokens blocks
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        --age-block-size 128 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/age_based_3_9k_o512_b128.txt
-
-## h2o eviction test
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --h2o-eviction \
-        -fa off \
-        -c 4096 \
-        -n 512 \
-        > experiments/h2o_3_9k_o512.out \
-        2> experiments/h2o_3_9k_o512.err
-
-### Generate the divergence results
-#### Output divergence
-    python3 output_divergence.py \
-        --name wiki_3_8k_o512 \
-        --baseline unbounded_3_8k_o512.txt \
-        --sliding sliding_win_3_8k_o512.txt \
-        --age age_based_3_8k_o512.txt \
-        --out-dir divergence_results
-
-    python3 output_divergence.py \
-        --name wiki_4k_o512 \
-        --baseline unbounded_4k_o512.txt \  
-        --sliding sliding_win_4k_o512.txt \  
-        --age age_based_4k_o512.txt  \ 
-        --out-dir divergence_results
-
-    python3 output_divergence.py \ 
-        --name wiki_3_9k_o512 \
-        --baseline unbounded_3_9k_o512.txt \
-        --sliding sliding_win_3_9k_o512.txt \
-        --age age_based_3_9k_o512.txt \
-        --out-dir divergence_results
-
-    python3 output_divergence.py \
-        --name wiki_1k_o512 \
-        --baseline unbounded_1k_o512.txt \
-        --sliding sliding_win_1k_o512.txt \
-        --age age_based_1k_o512.txt \
-        --out-dir divergence_results
-
-
-### Needle in a Haystack test
-#### Unbounded Baseline
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_start.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_start_unbounded.txt
-
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_middle.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_middle_unbounded.txt
-
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_end.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_end_unbounded.txt
-
-#### Sliding Window
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_start.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_start_sw.txt
-
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_middle.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_middle_sw.txt
-
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_end.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --sliding-window 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_end_sw.txt
-
-#### Age-based
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_start.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_start_age.txt
-
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_middle.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_middle_age.txt
-
-    /usr/bin/time -l ./build/bin/llama-cli \
-        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-        -f experiments/prompts/wiki_3_9k_needle_end.txt \
-        --single-turn \
-        --simple-io \
-        --show-timings \
-        --perf \
-        --temp 0 \
-        --seed 42 \
-        --ignore-eos \
-        --age-eviction 4096 \
-        -c 8192 \
-        -n 512 \
-        2>&1 | tee experiments/needle_end_age.txt
-
-### Command to test token size in a prompt example
-    ./build/bin/llama-tokenize \
-    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-    -f experiments/prompts/wiki_3_9k_needle_start.txt \
-    --show-count \
-    --log-disable
+    ./experiments/count_tokens.sh
 
 ## Token-level NLL drift evaluation
 
-These commands record an unbounded reference sequence and replay the same token IDs under each KV-cache policy. Run the unbounded command first because every policy command reads its CSV file.
+The script records an 8192-context unbounded reference and replays the same token IDs under sliding-window, age-based and H2O. It tests the 1024, 2048 and 4096 context budgets using all nine natural prompts.
 
-### Unbounded reference
+Run the full evaluation from the repository root:
 
-./build/bin/llama-cli \
-    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-    -f experiments/prompts/wiki_3_9k.txt \
-    --single-turn \
-    --simple-io \
-    --temp 0 \
-    --seed 42 \
-    --ignore-eos \
-    -fa off \
-    -c 8192 \
-    -n 512 \
-    --nll-output experiments/nll_unbounded_3_9k_o512.csv \
-    > experiments/nll_unbounded_3_9k_o512.out
+    bash experiments/run_nll_evaluation.sh
 
-### Sliding-window replay
+Run only the 1024-context cases first as a smaller test:
 
-./build/bin/llama-cli \
-    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-    -f experiments/prompts/wiki_3_9k.txt \
-    --single-turn \
-    --simple-io \
-    --temp 0 \
-    --seed 42 \
-    --ignore-eos \
-    --sliding-window \
-    -fa off \
-    -c 4096 \
-    --nll-reference experiments/nll_unbounded_3_9k_o512.csv \
-    --nll-output experiments/nll_sliding_3_9k_o512.csv \
-    > experiments/nll_sliding_3_9k_o512.out
+    bash experiments/run_nll_evaluation.sh 1024
 
-### Age-based replay
+The script runs one command at a time. It creates a `.done` file after each successful command, so completed runs are skipped when the script is restarted. Delete the related `.done` file if that command needs to run again.
 
-./build/bin/llama-cli \
-    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-    -f experiments/prompts/wiki_3_9k.txt \
-    --single-turn \
-    --simple-io \
-    --temp 0 \
-    --seed 42 \
-    --ignore-eos \
-    --age-eviction \
-    --age-keep-start 128 \
-    --age-block-size 64 \
-    -fa off \
-    -c 4096 \
-    --nll-reference experiments/nll_unbounded_3_9k_o512.csv \
-    --nll-output experiments/nll_age_3_9k_o512.csv \
-    > experiments/nll_age_3_9k_o512.out
-
-### H2O replay
-
-./build/bin/llama-cli \
-    -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
-    -f experiments/prompts/wiki_3_9k.txt \
-    --single-turn \
-    --simple-io \
-    --temp 0 \
-    --seed 42 \
-    --ignore-eos \
-    --h2o-eviction \
-    --h2o-keep-start 0 \
-    --h2o-recent-ratio 0.5 \
-    -fa off \
-    -c 4096 \
-    --nll-reference experiments/nll_unbounded_3_9k_o512.csv \
-    --nll-output experiments/nll_h2o_3_9k_o512.csv \
-    > experiments/nll_h2o_3_9k_o512.out
+Results are saved under `experiments/results/nll/`. H2O uses the fixed default recent ratio of 0.5, and flash attention is disabled for every policy to keep the quality comparison controlled. The timings from these NLL runs should not be used for the latency or throughput evaluation.

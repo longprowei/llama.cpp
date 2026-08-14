@@ -1,0 +1,53 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8135-1151f7470
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = Brock Lesnar = 
+ 
+ Brock Edward Lesnar / ˈlɛznər / ( born July 12 , 1977 ) is an American Canadian professional wrestler , mixed martial artist , and former amateur wrestler and professional American football player . He is currently signed to WWE on the Raw brand . He is a four @-@ time WWE ( World Heavyweight ) Champion , a former UFC Heavyweight Champion , and an NCAA Division I Heavyweight Wrestling Champion . He is also a one @-@ time IWGP Heavyweight Champion , making him a five @-@  ... (truncated)
+
+Brock Lesnar is a professional wrestler, mixed martial artist, and former amateur wrestler and professional American football player. He is currently signed to WWE on the Raw brand and has held the WWE Championship four times. Lesnar has also held the UFC Heavyweight Championship and is a one-time IWGP Heavyweight Champion, making him a five-time world champion in professional wrestling.
+
+Lesnar was born on July 12, 1977, in Webster, South Dakota. He was raised on a dairy farm owned by his parents and has two older brothers and a younger sister. Lesnar attended Webster High School, where he played football and competed in amateur wrestling, placing third in the state championships his senior year.
+
+Lesnar attended Bismarck State College, where he won the National Junior College Athletic Association (NJCAA) heavyweight wrestling championship in his sophomore year. He then transferred to the University of Minnesota on a wrestling scholarship for his junior and senior college years. There, he was roommates with future WWE colleague Shelton Benjamin, who was also his assistant coach.
+
+Lesnar won the 2000 National Collegiate Athletic Association (NCAA) Division I heavyweight wrestling championship his senior year after being the runner-up to Stephen Neal the year prior. He finished his amateur career as a two-time NJCAA All-American, the 1998 NJCAA Heavyweight Champion, two-time NCAA All-American, two-time Big Ten Conference Champion, and the 2000 NCAA Heavyweight Champion, with a record of 106-5 overall in four years of college.
+
+Lesnar signed with the World Wrestling Federation (WWF) in 2000 and was sent to its developmental territory, Ohio Valley Wrestling. There, he formed a tag team known as "The Minnesota Stretching Crew" with his former college roommate, Shelton Benjamin. Lesnar and Benjamin won the OVW Southern Tag Team Championship on three separate occasions.
+
+Lesnar debuted on WWF television on the March 18, 2002, episode of Raw, coming through the crowd and attacking Al Snow, Maven, and Spike Dudley during their match. He was accompanied by Paul Heyman, who was seen giving instructions to Lesnar. When the brand extension was introduced in the WWF, Lesnar was drafted to the Raw brand. Later, Heyman was confirmed to be Lesnar's agent and gave Lesnar the nickname "The Next Big Thing."
+
+Lesnar's first feud was with the Hardy Boyz. Lesnar and Jeff Hardy squared off at Backlash in Lesnar's first official televised match. He won the match by knockout after Hardy was unable to respond to referee Theodore Long. The next night on Raw, Lesnar faced off against Jeff Hardy's brother, Matt Hardy, and defeated him in the same fashion.
+
+In June 2002, Lesnar won the King of the Ring tournament, defeating Bubba Ray Dudley in the first round, Booker T in the quarter-finals, Test in the semi-finals, and Rob Van Dam in the finals, earning him a shot at the WWE Undisputed Championship at SummerSlam. On July 22, Lesnar joined the SmackDown! brand. After a quick feud with Hollywood Hulk Hogan in August 2002, Lesnar defeated WWE Undisputed Champion, The Rock at SummerSlam to become the WWE Undisputed Champion and youngest WWE Champion at age 25, a record previously held by The Rock.
+
+Lesnar's rapid rise to the top of WWE in 2002 led to a feud with The Undertaker, which involved a match at Unforgiven. The match ended in a double disqualification resulting in Lesnar retaining the title. Lesnar faced The Undertaker again, at No Mercy, this time in a Hell in a Cell match. Leading up to the match, in the storyline, Lesnar broke the Undertaker's hand with a propane tank. Despite Heyman begging McMahon not to let The Undertaker use his cast as a weapon, the request was denied and the match went on as planned.
+
+In a match that saw both wrestlers and even Heyman covered in blood, it ended when Lesnar reversed an attempted Tombstone Piledriver into his finishing F-5 maneuver for the win. Six days after his Hell in a Cell match with The Undertaker, Lesnar successfully retained his WWE title in a handicap match with Heyman at the Rebellion pay-per-view against Edge.
+
+Lesnar's next opponent was Big Show. Heyman was convinced more than anyone that Lesnar could not win, trying to talk him out of defending the title. Lesnar refused and faced Big Show in Madison Square Garden at the Survivor Series pay-per-view. Towards the end of the match, Lesnar delivered an F-5 to Big Show, but when he went for the pin, Heyman pulled the referee out of the ring. This allowed Big Show to capitalize and proceeded to chokeslam Lesnar on a steel chair. Show went on to pin Lesnar and win the title. This loss was Lesnar's first pinfall loss in WWE and led Lesnar
+NLL summary: tokens = 1024, mean NLL = 0.016666, reference NLL = 0.015306, mean drift = 0.001360, mean abs drift = 0.001835, max abs drift = 0.457381
+
+[ Prompt: 204.2 t/s | Generation: 14.9 t/s ]
+
+Exiting...

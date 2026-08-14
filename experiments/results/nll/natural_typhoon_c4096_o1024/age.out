@@ -1,0 +1,53 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8135-1151f7470
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = 2003 Pacific typhoon season = 
+ 
+ The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis exhibiting the development of 31 tropical depressions , of which 21 became named storms ; of those , 14 became typhoons . Though every month with the exception of February and March featured tropical activity , most storms developed from May through October . During the season , tropical cyclones affected the Philippines , Japan , China , the Korean Peninsula ... (truncated)
+
+The 2003 Pacific typhoon season was a slightly below average yearlong period of tropical cyclogenesis, with 31 tropical depressions, 21 named storms, and 14 typhoons. The season began with the formation of Tropical Storm Yanyan on January 15 and ended with the dissipation of a tropical depression east of the Philippines on December 27. The season was marked by several significant storms, including Typhoon Kujira, which became one of the longest-lasting Pacific typhoons in history and attained climatological records for its unusually early impacts. Typhoon Imbudo caused several deaths and extensive damage across the Philippines and China, while Typhoon Maemi became one of the costliest typhoons in recorded history after striking South Korea. The season closed with the dissipation of a tropical depression east of the Philippines on December 27.
+
+The season was also marked by several significant storms, including Typhoon Chan-hom, which reached its peak intensity with maximum sustained winds of 155 km/h (100 mph) and a minimum pressure of 940 mbar (hPa; 27.76 inHg). The storm caused some damage to homes and crops on Chuuk, mostly due to heavy rains brought forth by the storm. Offshore, a 1,040-ton fishing vessel, the Nien Feioch, sank during the storm, valued at $16 million.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cyclones that affected the Philippines, Japan, China, the Korean Peninsula, Indochina, and various islands in the western Pacific. The season was also marked by several significant storms, including Typhoon Imbudo, which caused several deaths and extensive damage across the Philippines and China, and Typhoon Maemi, which became one of the costliest typhoons in recorded history after striking South Korea.
+
+The season was also notable for the number of tropical cycl
+NLL summary: tokens = 1024, mean NLL = 0.029489, reference NLL = 0.029495, mean drift = -0.000006, mean abs drift = 0.000051, max abs drift = 0.007281
+
+[ Prompt: 205.3 t/s | Generation: 16.5 t/s ]
+
+Exiting...
