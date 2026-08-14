@@ -179,3 +179,21 @@ Run H2O with recent ratio 0.9 for sensitivity:
     bash experiments/run_retrieval_evaluation.sh h2o90
 
 Each command runs the early, middle and end prompts. The maximum output length is 1024 tokens. Results are saved under `experiments/results/retrieval/`.
+
+## Performance and memory evaluation
+
+Run all performance cases:
+
+    bash experiments/run_performance_evaluation.sh
+
+Run only one context size if needed:
+
+    bash experiments/run_performance_evaluation.sh 1024
+
+The script runs sliding-window, age-based and H2O with ratio 0.5 once for each bounded context budget, with an 8192-context unbounded comparison. It uses the Manila prompts, runs one command at a time, disables flash attention and does not use NLL.
+
+Results are saved under `experiments/results/performance/`. The `.out` files contain prompt and generation throughput, the `.err` files contain the llama.cpp memory breakdown, and the macOS `.time` files contain wall time and peak memory. Rerunning a case replaces its previous results.
+
+Calculate the performance and memory comparison:
+
+    python3 experiments/analyze_performance.py
