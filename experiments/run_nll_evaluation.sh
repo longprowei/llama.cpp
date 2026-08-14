@@ -7,6 +7,17 @@ MODEL=../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
 PROMPT_DIR=experiments/prompts
 RESULT_DIR=experiments/results/nll
 
+check_rows() {
+    csv=$1
+    expected=$2
+    rows=$(($(wc -l < "$csv") - 1))
+
+    if [ "$rows" -ne "$expected" ]; then
+        echo "Expected $expected tokens in $csv, but found $rows"
+        exit 1
+    fi
+}
+
 run_case() {
     family=$1
     context=$2
@@ -36,6 +47,7 @@ run_case() {
             --nll-output "$result/unbounded.csv" \
             > "$result/unbounded.out" \
             2> "$result/unbounded.err"
+        check_rows "$result/unbounded.csv" "$output"
         touch "$result/unbounded.done"
     fi
 
@@ -59,6 +71,7 @@ run_case() {
             --nll-output "$result/sliding.csv" \
             > "$result/sliding.out" \
             2> "$result/sliding.err"
+        check_rows "$result/sliding.csv" "$output"
         touch "$result/sliding.done"
     fi
 
@@ -84,6 +97,7 @@ run_case() {
             --nll-output "$result/age.csv" \
             > "$result/age.out" \
             2> "$result/age.err"
+        check_rows "$result/age.csv" "$output"
         touch "$result/age.done"
     fi
 
@@ -109,40 +123,45 @@ run_case() {
             --nll-output "$result/h2o.csv" \
             > "$result/h2o.out" \
             2> "$result/h2o.err"
+        check_rows "$result/h2o.csv" "$output"
         touch "$result/h2o.done"
     fi
 }
 
 run_budget() {
-    case $1 in
+    context=$1
+    output=${2:-}
+
+    case $context in
         1024)
-            run_case typhoon 1024 256
-            run_case brock 1024 256
-            run_case manila 1024 256
+            output=${output:-256}
             ;;
         2048)
-            run_case typhoon 2048 512
-            run_case brock 2048 512
-            run_case manila 2048 512
+            output=${output:-512}
             ;;
         4096)
-            run_case typhoon 4096 1024
-            run_case brock 4096 1024
-            run_case manila 4096 1024
+            output=${output:-1024}
             ;;
         *)
-            echo "Usage: bash experiments/run_nll_evaluation.sh [1024|2048|4096]"
+            echo "Usage: bash experiments/run_nll_evaluation.sh [1024|2048|4096] [output tokens]"
             exit 1
             ;;
     esac
+
+    run_case typhoon "$context" "$output"
+    run_case brock "$context" "$output"
+    run_case manila "$context" "$output"
 }
 
 if [ $# -eq 0 ]; then
     run_budget 1024
     run_budget 2048
     run_budget 4096
+elif [ $# -le 2 ]; then
+    run_budget "$1" "${2:-}"
 else
-    run_budget "$1"
+    echo "Usage: bash experiments/run_nll_evaluation.sh [1024|2048|4096] [output tokens]"
+    exit 1
 fi
 
 echo "All selected NLL runs are complete"

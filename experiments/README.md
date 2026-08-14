@@ -96,6 +96,10 @@ Run only the 1024-context cases first as a smaller test:
 
     bash experiments/run_nll_evaluation.sh 1024
 
-The script runs one command at a time. It creates a `.done` file after each successful command, so completed runs are skipped when the script is restarted. Delete the related `.done` file if that command needs to run again.
+Run the 1024-context long-generation test with 1024 output tokens:
+
+    bash experiments/run_nll_evaluation.sh 1024 1024
+
+The optional second argument changes the output length and saves the results in a separate output directory. The script runs one command at a time and checks the CSV token count before it creates a `.done` file, so completed runs are skipped when the script is restarted. Delete the related `.done` file if that command needs to run again.
 
 Results are saved under `experiments/results/nll/`. H2O uses the fixed default recent ratio of 0.5, and flash attention is disabled for every policy to keep the quality comparison controlled. The timings from these NLL runs should not be used for the latency or throughput evaluation.
