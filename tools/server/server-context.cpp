@@ -1280,6 +1280,14 @@ private:
 
         // initialize samplers
         if (task.need_sampling()) {
+            // fix the ignore_eos not working issue
+            if (task.cli && task.params.sampling.ignore_eos) {
+                const auto & eog_bias = params_base.sampling.logit_bias_eog;
+                task.params.sampling.logit_bias.insert(
+                        task.params.sampling.logit_bias.end(),
+                        eog_bias.begin(), eog_bias.end());
+            }
+
             slot.smpl.reset(common_sampler_init(model, task.params.sampling));
 
             if (slot.smpl == nullptr) {
