@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in several television series and theatre productions, including The Long Firm, Mercury Fur, and How to Curse. Boulter also starred in two films in 2008, Daylight Robbery and Donkey Punch. He had a recurring role in ten episodes of the television series Casualty in 2010 and starred in the 2011 film Mercenaries.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and spent his early years studying the Confucian classics. Du Fu failed the civil service exam and went on to travel and write poetry. He met Li Bai, a fellow poet, and the two formed a friendship. Du Fu's life was marked by turmoil and upheaval, including the An Lushan Rebellion, which caused widespread disruption and displacement.
+
+Du Fu's poetry is known for its strong sense of history and moral engagement. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poems are often concise and omit context, requiring the reader to understand the background and circumstances. His poetry is considered some of the greatest in Chinese literature, and he is often called the "Poet Historian".
+
+Du Fu's life was marked by his failure to achieve his goal of becoming a successful civil servant. He took the civil service exam twice but failed both times. Du Fu went on to lead a largely itinerant life, unsettled by wars, famines, and imperial displeasure. He wrote over 1,500 poems, many of which feature morality and history.
+
+Du Fu's poetry is characterized by its dense, late style, which is considered some of the greatest in Chinese literature. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poems are often concise and omit context, requiring the reader to understand the background and circumstances.
+
+Du Fu's life came to an end in 770, when he died in his 58th year. He was survived by his wife and two sons, who remained in the area for some years at least. Du Fu's legacy as a poet and historian continues to be celebrated, and his poetry remains some of the greatest in Chinese literature.
+
+Final answer: = Robert Boulter =
+
+[ Prompt: 201.2 t/s | Generation: 16.5 t/s ]
+
+Exiting...

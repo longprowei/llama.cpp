@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He has worked alongside notable actors such as Mark Strong and Derek Jacobi.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He is frequently called the greatest of the Chinese poets, along with Li Bai. Du Fu's life was devastated by the An Lushan Rebellion of 755, and his last 15 years were a time of almost constant unrest. He failed the civil service exam in 735 and spent the next four years living in the Luoyang area, fulfilling his duties in domestic affairs.
+
+Du Fu's poetry is known for its strong sense of history, moral engagement, and technical excellence. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. His poems are often concise and omit context, requiring the reader to be informed about the background. Du Fu's relationship with Li Bai was significant in his artistic development, and he wrote 12 poems to or about Li Bai.
+
+Du Fu's life was marked by his failure in the civil service exam and his subsequent attempts to resurrect his official career. He took the exam a second time in 747 but was failed by the prime minister. Du Fu petitioned the emperor directly in 751, 754, and 755, but his advice was unappreciated. He was demoted to a post as Commissioner of Education in Huazhou in 758.
+
+Du Fu's later years were marked by financial trouble and his stay in Sichuan province. He was hosted by local Prefect and fellow poet Pei Di and based himself in Sichuan for most of the next five years. Du Fu's poems from this period are peaceful depictions of his life at "thatched hut." He left the city to escape a rebellion in 762 but returned in 764 when he was appointed an advisor to Yan.
+
+Du Fu's last great poetic flowering occurred in Kuizhou, where he wrote 400 poems in his dense, late style. He was supported financially by Bo Maolin, who employed him as his unofficial secretary. Du Fu began his journey again in 768 and died in Tanzhou, Hunan province, in November or December 770, in his 58th year.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 80.4 t/s | Generation: 11.9 t/s ]
+
+Exiting...

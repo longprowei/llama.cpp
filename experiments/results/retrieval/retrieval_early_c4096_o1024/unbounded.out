@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He has also appeared in several other films and television series, including Daylight Robbery, Donkey Punch, and Survivors.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and died in 770. Du Fu's life was marked by his failure to pass the civil service exam, which led him to become a poet. He formed a friendship with Li Bai, who was a poetic star, and the two poets met several times. Du Fu's poetry was influenced by his experiences during the An Lushan Rebellion, which caused enormous disruption to Chinese society.
+
+Du Fu's poetry is known for its strong sense of history and moral engagement. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poetry is also notable for its technical excellence, with many of his poems featuring a dense and obscure style. He wrote over 1,500 poems during his lifetime, and his works have been preserved for centuries.
+
+Du Fu's life was marked by his struggles with illness and poverty. He suffered from lung problems, asthma, and poor eyesight, and was forced to move his family several times due to famine and war. Despite these challenges, Du Fu continued to write poetry, and his works are still studied and admired today.
+
+Du Fu's poetry is characterized by its use of imagery and symbolism. He often wrote about the natural world and the human condition, and his poems often featured themes of morality and history. Du Fu's poetry was influenced by his experiences during the An Lushan Rebellion, which caused enormous disruption to Chinese society.
+
+Du Fu's legacy as a poet has endured for centuries. He is considered one of the greatest poets of the Tang dynasty, and his works continue to be studied and admired today. Du Fu's poetry is known for its technical excellence, its strong sense of history and moral engagement, and its use of imagery and symbolism.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 201.1 t/s | Generation: 16.0 t/s ]
+
+Exiting...

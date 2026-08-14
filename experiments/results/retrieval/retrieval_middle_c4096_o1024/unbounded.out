@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He has also appeared in several other television series and films, including Daylight Robbery and Donkey Punch.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and spent his early years studying the Confucian classics. Du Fu failed the civil service exam in 735 and went back to traveling, this time around Shandong and Hebei. He met Li Bai in 744 and formed a friendship that had a significant impact on his artistic development.
+
+Du Fu's life was marked by turmoil and upheaval, particularly during the An Lushan Rebellion. He was forced to move his family due to the famine brought about by massive floods in the region. Du Fu received an appointment as Registrar of the Right Commandant's office of the Crown Prince's Palace in 755, but the position was swept away by events. He spent the next few years leading a largely itinerant life, unsettled by wars and associated famines.
+
+Du Fu's poetry is characterized by its strong sense of history, moral engagement, and technical excellence. He is often called the "poet historian" due to his direct and indirect commentary on the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poems are a valuable source of information on the era in which he lived.
+
+Du Fu's later years were marked by financial trouble and ill health. He was relieved by Yan Wu, a friend and former colleague who was appointed governor general at Chengdu. Du Fu based himself in Sichuan for most of the next five years and wrote many peaceful depictions of his life at "thatched hut." He left the city to escape a rebellion in 762 but returned in summer 764 when he was appointed an advisor to Yan.
+
+Du Fu's last great poetic flowering occurred in Kuizhou, where he wrote 400 poems in his dense, late style. He was supported financially and employed as his unofficial secretary by Bo Maolin, the governor of the region. Du Fu began his journey again in March 768 and got as far as Hunan province, where he died in November or December 770, in his 58th year.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 200.3 t/s | Generation: 16.0 t/s ]
+
+Exiting...

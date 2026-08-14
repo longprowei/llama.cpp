@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He has also appeared in several other films and television series, including Daylight Robbery, Donkey Punch, and Survivors.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and spent his early years studying the Confucian classics. Du Fu failed the civil service exam in 735 and went back to traveling, this time around Shandong and Hebei. He spent the next four years living in the Luoyang area, fulfilling his duties in domestic affairs. In 744, he met Li Bai, a famous poet, and the two formed a friendship.
+
+Du Fu's life was marked by poverty and hardship. He was forced to move his family due to the turmoil of a famine brought about by massive floods in the region. In 755, he received an appointment as Registrar of the Right Commandant's office of the Crown Prince's Palace, but the position was swept away by events. Du Fu led a largely itinerant life unsettled by wars, associated famines, and imperial displeasure.
+
+Du Fu's poetry is known for its strong sense of history and moral engagement. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poems are also notable for their technical excellence, with many featuring complex metaphors and imagery. He was called the "poet historian" by critics, and his works have been widely influential in both Chinese and Japanese literary culture.
+
+Du Fu's later years were marked by financial trouble and poor health. He was relieved by Yan Wu, a friend and former colleague who was appointed governor general at Chengdu. Despite his financial problems, this was one of the happiest and most peaceful periods of his life. Many of Du Fu's poems from this period are peaceful depictions of his life at "thatched hut".
+
+Du Fu's legacy as a poet and historian has endured for centuries. His works have been widely studied and admired, and he is considered one of the greatest poets of the Tang dynasty. Du Fu's poetry continues to be celebrated for its technical excellence, moral engagement, and historical significance.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 201.2 t/s | Generation: 14.0 t/s ]
+
+Exiting...

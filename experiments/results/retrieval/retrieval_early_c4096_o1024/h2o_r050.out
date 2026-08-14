@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He portrayed a character named "Sean" in Donkey Punch, who tags along with character "Josh" as the "quiet brother... who hits off with Tammi." Boulter guest starred on a two-part episode arc "Wounds" in May 2008 of the television series Waking the Dead as character "Jimmy Dearden."
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and died in 770. Du Fu's life was marked by his failure to pass the civil service exam, which led him to travel and write poetry. He met Li Bai, a fellow poet, and the two formed a friendship. Du Fu's poetry was influenced by his experiences during the An Lushan Rebellion, which caused enormous disruption to Chinese society. He wrote over 1,500 poems, many of which dealt with morality and history.
+
+Du Fu's early years were spent studying and memorizing the Confucian classics. He took the civil service exam in 735 but failed. He then traveled and wrote poetry, meeting Li Bai and forming a friendship. Du Fu's poetry was influenced by his experiences during the An Lushan Rebellion, which caused enormous disruption to Chinese society. He wrote over 1,500 poems, many of which dealt with morality and history.
+
+Du Fu's poetry was influenced by his experiences during the An Lushan Rebellion. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. His poetry was indirect history, providing information "of a kind seldom found in the officially compiled histories of the era." Du Fu's poetry was also influenced by his friendship with Li Bai, who was a poetic star. Du Fu's poetry was dense and late in style, with over 400 poems written during his last great poetic flowering.
+
+Du Fu's later years were marked by his appointment as Reminder when he rejoined the court in May 757. He caused trouble for himself by protesting the removal of his friend and patron Fang Guan on a petty charge. Du Fu was arrested but was pardoned in June. He was granted leave to visit his family in September but soon rejoined the court and returned to Chang'an with the emperor following its recapture by government forces.
+
+Du Fu's last years were marked by his appointment as Commissioner of Education in Huazhou. He was demoted to a post as Commissioner of Education in Huazhou in the summer of 758. Du Fu moved on in the summer of 759, traditionally ascribed to famine, but Hung believes that frustration is a more likely reason. Du Fu spent around six weeks in Qinzhou, where he wrote more than sixty poems.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 80.1 t/s | Generation: 11.9 t/s ]
+
+Exiting...

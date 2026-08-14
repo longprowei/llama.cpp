@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He portrayed a character named "Sean" in Donkey Punch, who tags along with character "Josh" as the "quiet brother... who hits off with Tammi." Boulter guest starred on a two-part episode arc "Wounds" in May 2008 of the television series Waking the Dead as character "Jimmy."
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He is frequently called the greatest of the Chinese poets, along with Li Bai. Du Fu's greatest ambition was to serve his country as a successful civil servant, but he proved unable to make the necessary accommodations. His life, like the whole country, was devastated by the An Lushan Rebellion of 755. Du Fu's works came to be hugely influential in both Chinese and Japanese literary culture. Of his poetic writing, nearly fifteen hundred poems have been preserved over the ages.
+
+Du Fu's life is known mainly from his poems. His paternal grandfather was Du Shenyan, a noted politician and poet during the reign of Empress Wu. Du Fu was born in 712; the exact birthplace is unknown, except that it was near Luoyang, Henan province. In later life, he considered himself to belong to the capital city of Chang'an, ancestral hometown of the Du family. Du Fu's mother died shortly after he was born, and he was partially raised by his aunt.
+
+Du Fu's early years were spent on the standard education of a future civil servant: study and memorization of the Confucian classics of philosophy. He later claimed to have produced credible poems by his teens, but these have been lost. In the 730s, he traveled in the Jiangsu/Jiangxi area; his earliest surviving poem, describing a poetry contest, is thought to date from the end of this period, around 735. Du Fu failed the civil service exam in 735, to his surprise and that of centuries of critics.
+
+Du Fu's life was marked by war, famine, and imperial displeasure. The An Lushan Rebellion began in December 755 and was not completely suppressed for almost eight years. Du Fu led a largely itinerant life unsettled by wars, associated famines, and imperial displeasure. This period of unhappiness was the making of Du Fu as a poet. Even when he learned of the death of his youngest child, he turned to the suffering of others in his poetry instead of dwelling upon his own misfortunes.
+
+Du Fu's later years were marked by financial trouble and poor health. He was relieved by Yan Wu, a friend and former colleague who was appointed governor general at Chengdu. Despite his financial problems, this was one of the happiest and most peaceful periods of his life. Many of Du Fu's poems from this period are peaceful depictions of his life at "thatched hut." In 762, he left the city to escape a rebellion, but he returned in summer 764 when he was appointed an advisor to Yan, who was involved in campaigns against the Tibetan Empire.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 79.1 t/s | Generation: 11.9 t/s ]
+
+Exiting...

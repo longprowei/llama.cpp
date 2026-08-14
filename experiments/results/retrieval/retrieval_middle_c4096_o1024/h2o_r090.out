@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He has worked with notable actors such as Ben Whishaw and Mark Strong.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and spent his early years studying the Confucian classics. Du Fu failed the civil service exam and went back to traveling, this time around Shandong and Hebei. He met Li Bai, a poetic star, and the two formed a friendship. Du Fu's life was marked by wars, famines, and imperial displeasure, which influenced his poetry.
+
+Du Fu's poetry is known for its strong sense of history, moral engagement, and technical excellence. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poems are often concise and omit context, requiring the reader to understand the background. His poetry is considered one of the greatest in Chinese literary culture.
+
+Du Fu's life was marked by his failure in the civil service exam and his subsequent travels. He met Li Bai and formed a friendship, which influenced his poetry. Du Fu's poetry is known for its strong sense of history and moral engagement. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China.
+
+Du Fu's poetry is considered one of the greatest in Chinese literary culture. He wrote over 1,500 poems, which have been preserved over the ages. Du Fu's poetry is known for its technical excellence and its ability to convey complex emotions and ideas. His poetry is still studied and admired today.
+
+Du Fu's life and poetry are a testament to his enduring legacy. He is considered one of the greatest poets in Chinese literary history. His poetry continues to be studied and admired today, and his legacy remains an important part of Chinese cultural heritage.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 80.3 t/s | Generation: 11.9 t/s ]
+
+Exiting...

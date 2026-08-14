@@ -1,0 +1,47 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English film, television, and theatre actor. He had a guest starring role on the television series The Bill in 2000 and a starring role in the play Herons in 2001. He appeared in the television series Judge John Deed in 2002 and had a recurring role in ten episodes of the television series Casualty in 2010. Boulter starred in the 2011 film Mercenaries directed by Paris Leonti. He has also appeared in several other television series and films, including Daylight Robbery and Donkey Punch.
+
+Du Fu was a prominent Chinese poet of the Tang dynasty. He was born in 712 and died in 770. Du Fu's life was marked by his failure to pass the civil service exam and his subsequent struggles to find a stable career. He was forced to move his family due to the turmoil of a famine brought about by massive floods in the region. Du Fu led a largely itinerant life unsettled by wars, associated famines, and imperial displeasure.
+
+Du Fu's poetry is known for its strong sense of history, moral engagement, and technical excellence. He wrote about the effect of the times in which he lived on himself and on the ordinary people of China. Du Fu's poems are often described as "poetic history" and are considered to be some of the most important works of Chinese literature. He is also known for his ability to convey complex emotions and ideas through his poetry.
+
+Du Fu's life was marked by his relationships with other poets and officials. He formed a friendship with Li Bai, who was a poetic star at the time. Du Fu also had a relationship with Pei Di, a local prefect and fellow poet, who hosted him in Chengdu. Du Fu's poetry often reflects his experiences and relationships with these individuals.
+
+Du Fu's poetry is characterized by its use of imagery and symbolism. He often used natural imagery to describe the world around him and to convey complex emotions and ideas. Du Fu's poetry is also known for its use of metaphor and allegory. He often used these literary devices to convey moral and philosophical ideas.
+
+Du Fu's legacy as a poet and historian has endured for centuries. His poetry is still studied and admired today for its technical excellence, moral engagement, and historical significance. Du Fu's life and work continue to be an important part of Chinese literary and cultural heritage.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 201.2 t/s | Generation: 16.0 t/s ]
+
+Exiting...

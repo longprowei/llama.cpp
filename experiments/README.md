@@ -103,3 +103,79 @@ Run the 1024-context long-generation test with 1024 output tokens:
 The optional second argument changes the output length and saves the results in a separate output directory. The script runs one command at a time and checks the CSV token count before it creates a `.done` file, so completed runs are skipped when the script is restarted. Delete the related `.done` file if that command needs to run again.
 
 Results are saved under `experiments/results/nll/`. H2O uses the fixed default recent ratio of 0.5, and flash attention is disabled for every policy to keep the quality comparison controlled. The timings from these NLL runs should not be used for the latency or throughput evaluation.
+
+### H2O ratio 1.0 correctness check
+
+This checks whether H2O with recent ratio 1.0 produces the same result as sliding-window.
+
+    result=experiments/results/nll/natural_brock_c1024_o1024
+
+    ./build/bin/llama-cli \
+        -m ../models/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf \
+        -f experiments/prompts/natural_brock_c1024.txt \
+        --single-turn \
+        --simple-io \
+        --temp 0 \
+        --seed 42 \
+        --ignore-eos \
+        --h2o-eviction \
+        --h2o-keep-start 0 \
+        --h2o-recent-ratio 1.0 \
+        -fa off \
+        -c 1024 \
+        -n 1024 \
+        -lv 3 \
+        --log-colors off \
+        --nll-reference "$result/unbounded.csv" \
+        --nll-output "$result/h2o_r100.csv" \
+        > "$result/h2o_r100.out" \
+        2> "$result/h2o_r100.err"
+
+Check the CSV row count and compare it with sliding-window:
+
+    wc -l "$result/h2o_r100.csv"
+
+    cmp -s "$result/sliding.csv" "$result/h2o_r100.csv" \
+        && echo "PASS: H2O ratio 1.0 matches sliding" \
+        || echo "DIFFERENT: results need inspection"
+
+The expected result is 1025 lines including the header and `PASS` from the comparison.
+
+### H2O recent-ratio sensitivity
+
+Run H2O with recent ratios 0.25, 0.75 and 0.90 on the three 1024-context long-generation cases:
+
+    bash experiments/run_h2o_ratio_sensitivity.sh
+
+The results are saved beside the existing 1024-context results using the names `h2o_r025`, `h2o_r075` and `h2o_r090`.
+
+### Calculate post-eviction NLL drift
+
+Use the analysis script to calculate the mean, mean absolute, median absolute, P95 absolute and maximum absolute NLL drift after eviction starts:
+
+    python3 experiments/analyze_nll.py 1024 256
+    python3 experiments/analyze_nll.py 2048 512
+    python3 experiments/analyze_nll.py 4096 1024
+    python3 experiments/analyze_nll.py 1024 1024
+
+The two arguments are the context size and output length. The script reads the prompt token count from each saved log and compares the policy CSV files that exist for all three prompts. P95 uses linear interpolation, and every macro value gives each prompt equal weight.
+
+## Free-generation retrieval evaluation
+
+Run the unbounded baselines first:
+
+    bash experiments/run_retrieval_evaluation.sh unbounded
+
+Check that each output has six summary paragraphs with 250 to 350 words, does not mention the classroom in the summary, and has `Ainsworth-G03` in the final answer.
+
+Run the bounded policies:
+
+    bash experiments/run_retrieval_evaluation.sh sliding
+    bash experiments/run_retrieval_evaluation.sh age
+    bash experiments/run_retrieval_evaluation.sh h2o50
+
+Run H2O with recent ratio 0.9 for sensitivity:
+
+    bash experiments/run_retrieval_evaluation.sh h2o90
+
+Each command runs the early, middle and end prompts. The maximum output length is 1024 tokens. Results are saved under `experiments/results/retrieval/`.
