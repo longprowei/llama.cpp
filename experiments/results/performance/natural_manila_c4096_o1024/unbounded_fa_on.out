@@ -1,0 +1,59 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+>  = Manila = 
+ 
+ Manila ( / məˈnɪl.ə / ) is the capital city of the Philippines , founded on June 24 , 1571 by Spanish conquistador Miguel López de Legazpi . It is one of the oldest cities in the country and was the seat of power for most of the colonial rules of the Philippines . It is situated on the eastern shore of Manila Bay and contains a multitude of landmarks , some of which date back to the 16th century , such as the Spanish colonial era Walled City of Intramuros . 
+ Manila is the s ... (truncated)
+
+Manila is the capital city of the Philippines, founded on June 24, 1571, by Spanish conquistador Miguel López de Legazpi. It is one of the oldest cities in the country and was the seat of power for most of the colonial rules of the Philippines. Manila is situated on the eastern shore of Manila Bay and contains a multitude of landmarks, some of which date back to the 16th century, such as the Spanish colonial era Walled City of Intramuros.
+
+Manila is the second most populous city in the Philippines after the former capital Quezon City, with a population of 1,780,148 in 2015. Due to its small land area and huge population, Manila is regarded as one of the most densely populated cities in the world, with 42,857 people per square kilometer.
+
+Manila has six representative districts for the lower house of the Philippine Congress, and the city is composed of 16 districts, namely: Binondo, Ermita, Intramuros, Malate, Paco, Pandacan, Port Area, Quiapo, Sampaloc, San Andres, San Miguel, San Nicolas, Santa Ana, Santa Cruz, Santa Mesa, and Tondo.
+
+The Kingdom of Tondo once ruled in the vicinity of Manila before it briefly became a province of the Hindu Majapahit Empire. During the Brunei invasion of the Philippines, Sultan Bolkiah of Brunei captured Seludong (a village in modern-day Manila) and renamed it Maynilà, a Tagalog term referring to the presence of the Nila shrub.
+
+In 1571, Spanish Conquistadors arrived from Mexico, from across the Pacific, and founded present-day Manila in what today is Intramuros. Spanish missionaries soon Christianized the city and incorporated Tondo under Manila and then built some of the oldest churches in the country, including San Agustin Church.
+
+Manila became the center of Spanish activity in the Far East and one end of the Manila-Acapulco Galleon trade route, linking Spanish America with Asia, one of the earliest examples of globalization. Due to the central location in the Pacific sea trade routes, Manila received the moniker of the "Pearl of the Orient."
+
+Spanish rule of Manila and the entire Philippine archipelago lasted for over three centuries, until 1898. At different times during the long Spanish period, there were local revolts, Chinese insurrections, massive pirate attacks, great earthquakes, Dutch raids and invasion attempts, and a British occupation of the city during their unsuccessful attempt to conquer the Philippines.
+
+Order was usually quickly restored, and the city returned to the business of trade. In the 19th century, Manila was one of the most modern cities in Asia. Before the Spanish-American War, Manila saw the rise of the Philippine Revolution. Under the American rule following the Spanish-American War, the United States changed the official language from Spanish to English and made some changes in education, local laws, and urban planning.
+
+Towards the end of World War II, during the Battle of Manila, most of the city was flattened by intensive aerial bombardment by the United States Air Force. As a result, relatively little remains of Manila's prewar and colonial architecture, although there are ongoing restoration projects, especially within the old walled city, Intramuros.
+
+The earliest evidence of human life in and around the area of Manila is the nearby Angono Petroglyphs dated to around 3000 BC. Furthermore, negritos, a class of Australoid peoples, became the aboriginal inhabitants of the Philippines. They were found across Luzon before the Malayo-Polynesians migrated in and assimilated them.
+
+The Kingdom of Tondo flourished during the latter half of the Ming Dynasty as a result of direct trade relations with China. Tondo district was maintained as the traditional capital of the empire, with its rulers as sovereign kings and not mere chieftains, and were addressed variously as panginuan ln Meranau or panginoón in Tagalog ("lords"); anák banwa ("son of heaven"); or lakandula ("lord of the palace"), the Emperor of China considered the Lakans (rulers of ancient Manila) "王" (Kings).
+
+In the 13th century, Manila consisted of a fortified settlement and trading quarter at the shores of the Pasig River, on top of previous older towns. Manila was then settled by the Indianized empire of Majapahit as referenced in the epic eulogy poem Nagarakretagama which inscribed its conquest by Maharaja Hayam Wuruk.
+
+Selurong "षेलुरोन् ग्" which is a historical name for the city of Manila is listed in Canto 14 alongside Sulot, which is now Sulu, and Kalka.
+
+During the reign of Sultan Bolkiah from 1485 to 1521, the Bruneian Empire invaded, wanting to take advantage of Tondo's China trade by attacking its env
+
+[ Prompt: 206.9 t/s | Generation: 22.4 t/s ]
+
+Exiting...

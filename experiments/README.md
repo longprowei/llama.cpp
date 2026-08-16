@@ -197,3 +197,15 @@ Results are saved under `experiments/results/performance/`. The `.out` files con
 Calculate the performance and memory comparison:
 
     python3 experiments/analyze_performance.py
+
+### Flash-attention performance comparison
+
+Run the 4096-context Manila comparison with flash attention enabled for unbounded, sliding-window and age-based:
+
+    bash experiments/run_flash_attention_performance.sh
+
+The results are saved beside the existing 4096-context performance results using the suffix `fa_on`. H2O still uses the existing flash-attention-off result.
+
+Calculate the native performance comparison:
+
+    python3 experiments/analyze_flash_attention.py
