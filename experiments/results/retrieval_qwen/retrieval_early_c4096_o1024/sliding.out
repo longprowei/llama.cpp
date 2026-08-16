@@ -1,0 +1,43 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Qwen3-8B-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English actor known for his work in film, television, and theatre. He began his career with a guest starring role in the television series "The Bill" in 2000. This was followed by a starring role in the play "Herons" written by Simon Stephens, which was performed in 2001 at the Royal Court Theatre. Boulter continued to appear in various television series, including "Judge John Deed" in 2002, "The Long Firm" in 2004, and "Waking the Dead" in 2008. He also had a recurring role in ten episodes of the television series "Casualty" in 2010. Boulter's career spanned from 2000 to the present, with notable roles in theatre productions of the Philip Ridley play "Mercury Fur" in 2005 and the Mark Ravenhill play "Citizenship" in 2006.
+
+Summary:
+Boulter's career in theatre began with the play "Herons" in 2001, which was performed at the Royal Court Theatre. He continued to appear in various theatre productions, including the Philip Ridley play "Mercury Fur" in 2005 and the Mark Ravenhill play "Citizenship" in 2006. Boulter's career in television began with the television series "The Bill" in 2000, followed by "Judge John Deed" in 2002, "The Long Firm" in 2004, and "Waking the Dead" in 2008. He also had a recurring role in ten episodes of the television series "Casualty" in 2010. Boulter's career in film began with the film "Mercenaries" directed by Paris Leonti in 2011. Boulter's career spanned from 2000 to the present, with notable roles in theatre productions of the Philip Ridley play "Mercury Fur" in 2005 and the Mark Ravenhill play "Citizenship" in 2006.
+
+Summary:
+Du Fu is a prominent Chinese poet of the Tang dynasty, known for his works and influence on both Chinese and Japanese literary culture. His life was devastated by the An Lushan Rebellion of 755, and his last 15 years were a time of almost constant unrest. Du Fu's works have been preserved over the ages, with nearly fifteen hundred poems having been preserved. He has been called the "Poet @-@ Historian" and the "Poet @-@ Sage" by Chinese critics, while the range of his work has allowed him to be introduced to Western readers as "the Chinese Virgil, Horace, Ovid, Shakespeare, Milton, Burns, Wordsworth, Béranger, Hugo or Baudelaire" by Western critics. Traditional Chinese literary criticism emphasized the life of the author when interpreting a work, a practice which Burton Watson attributes to "the close links that traditional Chinese thought posits between art and morality" in the interpretation of Du Fu's works.
+
+Final answer: The classroom.
+
+[ Prompt: 199.6 t/s | Generation: 13.2 t/s ]
+
+Exiting...

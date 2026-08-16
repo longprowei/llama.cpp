@@ -209,3 +209,17 @@ The results are saved beside the existing 4096-context performance results using
 Calculate the native performance comparison:
 
     python3 experiments/analyze_flash_attention.py
+
+## Qwen3 cross-model retrieval check
+
+Download the official Qwen3-8B Q4_K_M model from the repository root:
+
+    curl -L -C - --progress-bar \
+        -o ../models/Qwen3-8B-Q4_K_M.gguf \
+        "https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf?download=true"
+
+Run the early-position retrieval test:
+
+    bash experiments/run_qwen_retrieval.sh
+
+The script runs unbounded, sliding-window, age-based and H2O with recent ratio 0.5. Results are saved under `experiments/results/retrieval_qwen/`.

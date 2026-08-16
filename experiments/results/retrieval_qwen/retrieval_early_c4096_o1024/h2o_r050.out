@@ -1,0 +1,52 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Qwen3-8B-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English actor known for his work in film, television, and theatre. He began his career with a guest starring role in the television series "The Bill" in 2000, where he portrayed "Scott Parry." This was followed by a starring role in the play "Herons" by Simon Stephens at the Royal Court Theatre in 2001. Boulter continued to appear in various television series such as "Judge John Deed" and "The Long Firm," where he worked alongside notable actors like Mark Strong and Derek Jacobi. In 2005, he starred in the Philip Ridley play "Mercury Fur" at the Drum Theatre and the Menier Chocolate Factory, directed by John Tiffany. His career continued to flourish with roles in plays like "Citizenship" and "How to Curse," as well as films such as "Daylight Robbery" and "Donkey Punch." Boulter also appeared in several television series, including "Waking the Dead" and "Survivors," and had a recurring role in "Casualty" from 2010.
+
+Summary:
+Boulter's career from 2006 to the present has seen him work with prominent actors and playwrights. He starred alongside Ben Whishaw in the play "Citizenship" and appeared in the television series "Doctors" in 2006. In 2007, he performed in "How to Curse" directed by Josie Rourke at the Bush Theatre. Boulter's filmography includes "Daylight Robbery" and "Donkey Punch," where he portrayed characters like "Sean" and "Josh." He also guest-starred in "Waking the Dead" and "Survivors," and had a recurring role in "Casualty" as "Kieron Fletcher." His role in the 2011 film "Mercenaries" marked another significant milestone in his career.
+
+Summary:
+Du Fu was a prominent Chinese poet of the Tang dynasty, known for his significant contributions to Chinese and Japanese literature. Alongside Li Bai, he is considered one of the greatest Chinese poets. His life was deeply affected by the An Lushan Rebellion, which caused widespread devastation and personal hardship. Du Fu's works, which include nearly 1,500 poems, are highly influential and have earned him titles such as "Poet Historian" and "Poet Sage." His poetry often reflects moral and historical themes, and his works have been introduced to Western readers as a blend of various literary traditions.
+
+Summary:
+Du Fu's life and works are deeply intertwined with the historical context of the Tang dynasty. His early years were marked by a traditional education, and he initially struggled with the civil service exams. His friendship with Li Bai played a significant role in his artistic development. Du Fu's career as a civil servant was short-lived due to the An Lushan Rebellion, which forced him into a life of wandering and hardship. His poetry, which often depicted the suffering of others and his own personal misfortunes, became a reflection of the turbulent times he lived through.
+
+Summary:
+During the An Lushan Rebellion, Du Fu's life was marked by constant displacement and hardship. He moved frequently, often due to wars and famines, and his poetry became a reflection of these experiences. His time in Chengdu, hosted by the poet Pei Di, was one of the most peaceful periods of his life, during which he wrote many poems about his simple life in a thatched hut. Despite his personal struggles, Du Fu continued to write, and his final years were spent in Luoyang and along the Yangtze River, where he produced some of his most powerful works. He died in 770 at the age of 58, leaving behind a legacy of literary excellence.
+
+Summary:
+Du Fu's legacy is marked by his profound influence on Chinese and Japanese literature. His works, which reflect both personal and historical themes, have been widely studied and appreciated. His poetry is characterized by its moral engagement, technical excellence, and historical awareness. Despite the challenges he faced in his life, including political turmoil and personal misfortunes, Du Fu's contributions to literature remain significant. His final years were spent in a period of creative flourishing, and his works continue to be celebrated for their depth and emotional resonance.
+
+Final answer: The classroom is Ainsworth-G03.
+
+[ Prompt: 74.5 t/s | Generation: 11.1 t/s ]
+
+Exiting...

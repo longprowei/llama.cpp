@@ -1,0 +1,52 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8138-2e37921fb
+model      : Qwen3-8B-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Read the following document carefully.
+ 
+ = Robert Boulter = 
+ 
+ Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of ... (truncated)
+
+Summary:
+Robert Boulter is an English actor known for his work in film, television, and theatre. He began his career with a guest starring role in the television series "The Bill" in 2000, where he portrayed "Scott Parry." This was followed by a starring role in the play "Herons" by Simon Stephens at the Royal Court Theatre in 2001. Boulter continued to appear in various television series such as "Judge John Deed" and "Waking the Dead," and he also had a recurring role in "Casualty" from 2010. His theatre career includes notable roles in "Mercury Fur" and "How to Curse," directed by John Tiffany and Josie Rourke, respectively. Boulter's filmography includes works like "Daylight Robbery" and "Mercenaries," both directed by Paris Leonti.
+
+Summary:
+Du Fu was a prominent Chinese poet of the Tang dynasty, known for his significant contributions to Chinese and Japanese literature. Alongside Li Bai, he is considered one of the greatest Chinese poets. His life was deeply affected by the An Lushan Rebellion, which caused widespread devastation and personal hardship. Du Fu's poetry often reflected his moral concerns and historical context, earning him titles such as "Poet-Historian" and "Poet-Sage." His works, which number nearly 1,500 poems, have been preserved and continue to influence literary culture.
+
+Summary:
+Du Fu's early life was marked by his education in Confucian classics and his aspirations to serve as a civil servant. He faced challenges in his early career, including failure in the civil service exams, which led him to travel and seek alternative paths. His friendship with Li Bai played a significant role in shaping his artistic development. Despite his ambitions, Du Fu's life was often marked by personal and political turmoil, which deeply influenced his poetic themes.
+
+Summary:
+The An Lushan Rebellion had a profound impact on Du Fu's life and work. During this period of war and famine, he experienced significant personal loss and hardship, which inspired much of his poetry. His works from this time reflect the suffering of both himself and the common people. Du Fu's poetry often focused on the human condition, capturing the struggles of his family, neighbors, and strangers. His ability to convey these experiences through his writing solidified his place in literary history.
+
+Summary:
+In the later years of his life, Du Fu found temporary peace in Chengdu, where he was hosted by the local Prefect Pei Di. This period was marked by financial difficulties but also by a sense of tranquility and creativity. Du Fu's poetry from this time often depicted peaceful scenes of daily life. However, he was eventually forced to leave Chengdu due to a rebellion, and he continued to write prolifically until his death in 770. His legacy as a poet and his contributions to literature remain highly regarded.
+
+Summary:
+Du Fu's works are celebrated for their historical insight, moral engagement, and technical excellence. His poetry often reflects the social and political conditions of his time, making it a valuable resource for understanding the Tang dynasty. His ability to convey personal and collective suffering through his writing has made his works enduring and influential. Despite the challenges he faced in his life, Du Fu's contributions to literature have left a lasting impact on both Chinese and global literary traditions.
+
+Final answer: The classroom is mentioned in the document but is not relevant to the biographical, historical, or literary content.
+
+[ Prompt: 199.6 t/s | Generation: 15.8 t/s ]
+
+Exiting...
