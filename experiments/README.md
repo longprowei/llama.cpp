@@ -84,6 +84,8 @@ Note that runtime throughput and memory measurements may vary across hardware pl
 
     ./experiments/count_tokens.sh
 
+The script counts only the raw prompt text. In the saved runs, llama-cli added 42 tokens through the model chat template, and the analysis uses the final prompt token count recorded in each log.
+
 ## Token-level NLL drift evaluation
 
 The script records an 8192-context unbounded reference and replays the same token IDs under sliding-window, age-based and H2O. It tests the 1024, 2048 and 4096 context budgets using all nine natural prompts.
